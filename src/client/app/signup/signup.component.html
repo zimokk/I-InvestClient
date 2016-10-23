@@ -2,28 +2,37 @@
 	<div class="row">
 		<div class="col-lg-4 col-lg-offset-4">
         	<img src="assets/img/SB-admin.png" width="150px;" class="user-avatar" />
-			<h1>SB Admin BS 4 Angular2</h1>
-			<form role="form">
+			<h1>Registration</h1>
+			<form role="form" #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" novalidate>
 				<div class="form-content">
 					<div class="form-group">
-						<input type="text" class="form-control input-underline input-lg" id="" placeholder="Full Name">
-					</div>
-
-					<div class="form-group">
-						<input type="text" class="form-control input-underline input-lg" id="" placeholder="Email">
-					</div>
-
-					<div class="form-group">
-						<input type="password" class="form-control input-underline input-lg" id="" placeholder="Password">
+						<input name="login" [(ngModel)]="login" type="text" class="form-control input-underline input-lg" placeholder="Login">
 					</div>
 					<div class="form-group">
-						<input type="password" class="form-control input-underline input-lg" id="" placeholder="Repeat Password">
+						<input name="email" [(ngModel)]="email" type="email" class="form-control input-underline input-lg" placeholder="Email">
 					</div>
+          <div class="form-group">
+            <input name="password" [(ngModel)]="password" type="password" class="form-control input-underline input-lg" placeholder="Password">
+          </div>
+					<div class="form-group">
+						<input name="repeatedPassword" [(ngModel)]="repeatedPassword" type="password" class="form-control input-underline input-lg" placeholder="Repeat Password">
+					</div>
+          <div class="form-group row">
+            <div class="col-sm-6">
+              <input class="form-control input-underline" type="number" [(ngModel)]="age" name="age" placeholder="Age">
+            </div>
+            <div class="col-sm-6">
+                <select [(ngModel)]="sex" class="form-control input-underline sex-select" name="sex"> Sex:
+                  <option value="male" selected>Male</option>
+                  <option value="female">Female</option>
+                </select>
+            </div>
+          </div>
 				</div>
-				<a type="submit" class="btn rounded-btn" routerLink="/dashboard/home"> Register </a>&nbsp;
-				<a type="submit" class="btn rounded-btn" routerLink="/"> Log in </a>
         <a type="submit" class="btn rounded-btn inactive-link-button" routerLink="/"> Log in </a>
+        <button class="btn rounded-btn" type="submit">Register</button>
+				<!--<a type="submit" class="btn rounded-btn" routerLink="/dashboard/home"> Register </a>&nbsp;-->
 			</form>
-		</div>	
+		</div>
 	</div>
 </div>
