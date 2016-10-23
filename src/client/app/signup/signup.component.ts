@@ -22,7 +22,7 @@ export class SignupComponent {
     console.dir(this);
     debugger;
     if(password == repeatedPassword){
-      return this.userService.register(login, password);
+      this.userService.register(login, password);
     }
   }
 }

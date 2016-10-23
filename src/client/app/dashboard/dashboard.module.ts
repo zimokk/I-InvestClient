@@ -18,6 +18,8 @@ import { DashboardComponent } from './dashboard.component';
 import {TopNavComponent} from '../shared/index';
 import {SidebarComponent} from '../shared/index';
 
+import {AuthService} from '../servicies/auth.service'
+
 
 @NgModule({
     imports: [
@@ -35,7 +37,8 @@ import {SidebarComponent} from '../shared/index';
         BlankPageModule
     ],
     declarations: [DashboardComponent, TopNavComponent, SidebarComponent],
-    exports: [DashboardComponent, TopNavComponent, SidebarComponent]
+    exports: [DashboardComponent, TopNavComponent, SidebarComponent],
+    providers: [AuthService]
 })
 
 export class DashboardModule { }
