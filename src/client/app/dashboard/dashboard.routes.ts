@@ -28,6 +28,6 @@ export const DashboardRoutes: Route[] = [
         ...BSElementRoutes
     	],
       data: {roles:['user']},
-      canActivate: [AuthService], //add required roles
+      canActivate: [AuthService] //add required roles
   	}
 ];
