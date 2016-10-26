@@ -14,11 +14,12 @@ export class LoginComponent {
 
   }
 
-  onSubmit(loginForm: NgForm){
+  onSubmit(){
+    console.log("login onsubmit");
     let login = this.login;
     let password = this.password;
     this.authService.login(login, password);
-    this.submitted = true;
+    return false;
   }
 
 }

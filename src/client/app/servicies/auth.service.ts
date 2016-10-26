@@ -9,7 +9,8 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class AuthService implements CanActivate {
-  private url = "http://localhost:8000/authorize";
+  private urlPrefix = "/authorize";
+  private baseUrl = "http://localhost:8000";
   constructor(private http: Http, private router: Router){}
 
   canActivate(route: ActivatedRouteSnapshot,  state: RouterStateSnapshot):Observable<boolean> | boolean {
@@ -18,12 +19,13 @@ export class AuthService implements CanActivate {
       let token = this.getToken();
       let self = this;
       if(roles){
-        return this.chechToken(token).then(function (checkTokenResponse) {
+        return this.checkToken(token).then(function (checkTokenResponse) {
           if(checkTokenResponse){
             let data = checkTokenResponse.json().data;
               if(data && data.role && data.login){
                 let userRole = data.role;
                 if(self.isRoleAccessAllowed(roles, userRole)){
+                  console.log('allowed');
                   return true;
                 }else{
                   self.router.navigate(['/login']);
@@ -31,17 +33,19 @@ export class AuthService implements CanActivate {
                 }
               } else{ // checkTokenResponse.data.name && checkTokenResponse.data.message
                 self.router.navigate(['/login']);
-                return false; //Bad token
+                return false;
               }
             }
             self.router.navigate(['/login']);
             return false;
           }).catch(this.handleError);
       } else{
+        console.log('no roles');
         return true;
       }
     } else{
-      return true
+      console.log('no data');
+      return true;
     }
   }
 
@@ -70,14 +74,19 @@ export class AuthService implements CanActivate {
   }
 
   checkToken(token: string) {
-    let headers = new Headers({'Content-Type': 'application/json'});
-    return this.http.post(this.url, JSON.stringify({token: token}), {headers: headers}).toPromise()
+    return this.http.post(
+      this.baseUrl+this.urlPrefix,
+      JSON.stringify({token: token}),
+      RequestHelperService.getHeaders())
+    .toPromise()
   }
 
   login(login: string, password: string):Observable<boolean> | boolean {
-    let headers = new Headers({'Content-Type': 'application/json'});
     let self = this;
-    return this.http.post(this.url, JSON.stringify({login: login, password: password}), {headers: headers})
+    return this.http.post(
+      self.baseUrl+this.urlPrefix,
+      JSON.stringify({login: login, password: password}),
+      {headers: new Headers({'Content-Type': 'application/json'})})
       .toPromise()
       .then(function (response) {
         let data = response.json().data;

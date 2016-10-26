@@ -3,7 +3,7 @@
 		<div class="col-lg-4 col-lg-offset-4">
         	<img src="assets/img/SB-admin.png" width="150px" class="user-avatar" />
 			<h1>SB Admin BS 4 Angular2</h1>
-			<form role="form" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" novalidate>
+			<form role="form" #loginForm="ngForm">
 				<div class="form-content">
 					<div class="form-group">
 						<input type="text" name="login" [(ngModel)]="login" class="form-control input-underline input-lg" placeholder="Login">
@@ -12,7 +12,7 @@
 						<input type="password" name="password" [(ngModel)]="password" class="form-control input-underline input-lg" id="password" placeholder="Password">
 					</div>
 				</div>
-				<button type="submit" class="btn rounded-btn"> Log in </button><!-- routerLink="/dashboard/home"-->
+				<button class="btn rounded-btn" (click)="onSubmit()" > Log in </button><!-- routerLink="/dashboard/home"-->
 				<a class="btn rounded-btn inactive-link-button" routerLink="/signup">Register</a>
 			</form>
 		</div>
