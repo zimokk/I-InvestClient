@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {NgForm} from '@angular/forms';
 
 import { AuthService } from '../servicies/auth.service';
 
@@ -13,7 +14,11 @@ export class LoginComponent {
 
   }
 
-  login(){
-    
+  onSubmit(loginForm: NgForm){
+    let login = this.login;
+    let password = this.password;
+    this.authService.login(login, password);
+    this.submitted = true;
   }
+
 }

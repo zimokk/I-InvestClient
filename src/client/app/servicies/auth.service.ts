@@ -61,31 +61,37 @@ export class AuthService implements CanActivate {
   }
 
   getToken(): string {
-    return 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ODBmMmZkN2ZjOWJjYzIwNmMxMTcwNjEiLCJsb2dpbiI6ImxvZ2luMTEiLCJwYXNzd29yZCI6InBhc3N3b3JkMSIsInJvbGUiOiJ1c2VyIiwiZW1haWwiOiJlbWFpbEB0dXQuYnkiLCJhZ2UiOjIxLCJzZXgiOiJtYWxlIiwiaWF0IjoxNDc3NDczNTA4LCJleHAiOjE0Nzc0NzcxMDh9.GjMbIwGujPSlnI0LE57tLKfw6rRS3MtMfGbSuw1ipCU';// localStorage.getItem('token');
+    let token = localStorage.getItem('token');
+    return token;
   }
 
   setToken(token: string): void {
     localStorage.setItem('token', token);
   }
 
-  extractData(data){
-    console.log('extract');
-    console.log(data);
-  }
-
-  chechToken(token: string) {
+  checkToken(token: string) {
     let headers = new Headers({'Content-Type': 'application/json'});
     return this.http.post(this.url, JSON.stringify({token: token}), {headers: headers}).toPromise()
   }
 
-  login():boolean {
-    //request to the server
-    if(response.data){
-      this.setToken(response.data.token);
-
-    } else{
-
-    }
-    return false;
+  login(login: string, password: string):Observable<boolean> | boolean {
+    let headers = new Headers({'Content-Type': 'application/json'});
+    let self = this;
+    return this.http.post(this.url, JSON.stringify({login: login, password: password}), {headers: headers})
+      .toPromise()
+      .then(function (response) {
+        let data = response.json().data;
+        if(data){
+          if(data && data.login && data.token){
+            self.setToken(data.token);
+            self.router.navigate(['/index']);
+            return true;
+          } else{
+            return false;
+          }
+        } else{
+          return false;
+        }
+    });
   }
 }
