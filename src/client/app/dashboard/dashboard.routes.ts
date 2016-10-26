@@ -27,6 +27,7 @@ export const DashboardRoutes: Route[] = [
         ...GridRoutes,
         ...BSElementRoutes
     	],
-    canActivate: [AuthService],
+      data: {roles:['user']},
+      canActivate: [AuthService], //add required roles
   	}
 ];

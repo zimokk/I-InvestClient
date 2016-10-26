@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 
-/**
-*	This class represents the lazy loaded LoginComponent.
-*/
+import { AuthService } from '../servicies/auth.service';
 
 @Component({
 	moduleId: module.id,
@@ -10,4 +8,12 @@ import { Component } from '@angular/core';
 	templateUrl: 'login.component.html'
 })
 
-export class LoginComponent { }
+export class LoginComponent {
+  constructor(private authService: AuthService){
+
+  }
+
+  login(){
+    
+  }
+}
