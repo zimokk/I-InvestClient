@@ -11,6 +11,7 @@ import 'rxjs/add/operator/toPromise';
 export class AuthService implements CanActivate {
   private urlPrefix = "/authorize";
   private baseUrl = "http://localhost:8000";
+  private currentUser = {};
   constructor(private http: Http, private router: Router){}
 
   canActivate(route: ActivatedRouteSnapshot,  state: RouterStateSnapshot):Observable<boolean> | boolean {
@@ -23,6 +24,7 @@ export class AuthService implements CanActivate {
           if(checkTokenResponse){
             let data = checkTokenResponse.json().data;
               if(data && data.role && data.login){
+                self.setCurrentUser(data);
                 let userRole = data.role;
                 if(self.isRoleAccessAllowed(roles, userRole)){
                   console.log('allowed');
@@ -47,6 +49,15 @@ export class AuthService implements CanActivate {
       console.log('no data');
       return true;
     }
+  }
+
+  setCurrentUser(data){
+    this.currentUser.login = data.login;
+    this.currentUser.role = data.role;
+  }
+
+  getCurrentUser(){
+
   }
 
   isRoleAccessAllowed(allowedRoles: Array<string>, userRole: string): boolean{
@@ -77,7 +88,7 @@ export class AuthService implements CanActivate {
     return this.http.post(
       this.baseUrl+this.urlPrefix,
       JSON.stringify({token: token}),
-      RequestHelperService.getHeaders())
+      {headers: new Headers({'Content-Type': 'application/json'})})
     .toPromise()
   }
 

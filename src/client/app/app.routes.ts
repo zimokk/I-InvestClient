@@ -6,10 +6,11 @@ import { DashboardRoutes } from './dashboard/index';
 
 import { LoginComponent } from './login/index';
 import {HomeComponent} from "./dashboard/home/home.component";
+import {DashboardComponent} from "./dashboard/dashboard.component";
 
 export const routes: Routes = [
 	...LoginRoutes,
 	...SignupRoutes,
 	...DashboardRoutes,
-	{ path: '**', component: HomeComponent }
+	{ path: '**', component: DashboardComponent }
 ];

@@ -1,4 +1,4 @@
-import { Route } from '@angular/router';
+import { Route, provideRouter, RouterConfig} from '@angular/router';
 
 import { HomeRoutes } from './home/index';
 import { ChartRoutes } from './charts/index';
@@ -12,6 +12,8 @@ import { BSElementRoutes } from './bs-element/index';
 import { AuthService } from '../servicies/auth.service'
 
 import { DashboardComponent } from './index';
+import {HomeComponent} from "./home/home.component";
+import {routes} from "../app.routes";
 
 export const DashboardRoutes: Route[] = [
   	{
@@ -29,5 +31,21 @@ export const DashboardRoutes: Route[] = [
     	],
       data: {roles:['user']},
       canActivate: [AuthService] //add required roles
-  	}
+  	},
+    { path: '**', redirectTo: 'dashboard/home' }
 ];
+// const appRoutes:RouterConfig = [                 //removed export
+//   {                                          // removed square bracket
+//     path: '',
+//     redirectTo: '/home',
+//     pathMatch: 'full'
+//   },{
+//     path: 'home',
+//     component: HomeComponent
+//   }
+// ];
+//
+//
+// export const appRouterProviders = [
+//   provideRouter(routes)
+// ];
