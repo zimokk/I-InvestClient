@@ -19,6 +19,7 @@ import {TopNavComponent} from '../shared/index';
 import {SidebarComponent} from '../shared/index';
 
 import {AuthService} from '../servicies/auth.service'
+import {AdministrationModule} from "./administration/administration.module";
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import {AuthService} from '../servicies/auth.service'
         GridModule,
     	BSComponentModule,
         BSElementModule,
-        BlankPageModule
+        BlankPageModule,
+      AdministrationModule
     ],
     declarations: [DashboardComponent, TopNavComponent, SidebarComponent],
     exports: [DashboardComponent, TopNavComponent, SidebarComponent],

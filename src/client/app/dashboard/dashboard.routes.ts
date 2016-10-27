@@ -14,6 +14,7 @@ import { AuthService } from '../servicies/auth.service'
 import { DashboardComponent } from './index';
 import {HomeComponent} from "./home/home.component";
 import {routes} from "../app.routes";
+import {AdministrationRoutes} from "./administration/administration.routes";
 
 export const DashboardRoutes: Route[] = [
   	{
@@ -27,7 +28,8 @@ export const DashboardRoutes: Route[] = [
 	    	...BlankPageRoutes,
         ...FormRoutes,
         ...GridRoutes,
-        ...BSElementRoutes
+        ...BSElementRoutes,
+        ...AdministrationRoutes
     	],
       data: {roles:['user']},
       canActivate: [AuthService] //add required roles
