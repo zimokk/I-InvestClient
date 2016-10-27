@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
 
 import { UserService } from '../servicies/user.service';
 import { AuthService } from '../servicies/auth.service';
+import {NotificationsService} from "angular2-notifications/components";
 
 @Component({
 	moduleId: module.id,
@@ -12,11 +12,14 @@ import { AuthService } from '../servicies/auth.service';
 })
 
 export class SignupComponent {
-  constructor(private userService: UserService, private authService: AuthService){
+  constructor(private userService: UserService, private authService: AuthService, private  notificationService: NotificationsService){
   }
 
-  onSubmit(f: NgForm){
+  onSubmit(){
     console.dir(this.login);
+    let self = this;
+    self.notificationService.alert("title","content");
+    console.dir(this.notificationService);
   }
 
   register(event): void{

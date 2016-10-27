@@ -5,10 +5,11 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { SignupComponent } from './signup.component';
-import {AuthService} from "../servicies/auth.service";
 
 @NgModule({
-    imports: [CommonModule, RouterModule, BrowserModule, FormsModule],
+    imports: [
+      CommonModule, RouterModule, BrowserModule, FormsModule
+    ],
     declarations: [SignupComponent],
     exports: [SignupComponent]
 })

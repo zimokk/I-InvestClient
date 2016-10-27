@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
-
-/**
-*	This class represents the lazy loaded DashboardComponent.
-*/
+import {NotificationsService} from "angular2-notifications/components";
 
 @Component({
 	moduleId: module.id,

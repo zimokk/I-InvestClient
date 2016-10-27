@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {NgForm} from '@angular/forms';
 
 import { AuthService } from '../servicies/auth.service';
+import {NotificationsService} from "angular2-notifications/components";
 
 @Component({
 	moduleId: module.id,
@@ -10,16 +11,21 @@ import { AuthService } from '../servicies/auth.service';
 })
 
 export class LoginComponent {
-  constructor(private authService: AuthService){
+  constructor(private authService: AuthService, private  notificationService: NotificationsService){
 
   }
 
   onSubmit(){
-    console.log("login onsubmit");
     let login = this.login;
     let password = this.password;
-    this.authService.login(login, password);
-    return false;
+    let self = this;
+    this.authService.login(login, password).then(function (result) {
+      if(result){
+        self.notificationService.success("Success", 'You enter as ' + login);
+      } else{
+        self.notificationService.error("Error", 'Wrong login/password');
+      }
+    });
   }
 
 }
