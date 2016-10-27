@@ -55,8 +55,8 @@ export class UserService {
   getAll(){
     return this.http.get(
       this.baseUrl+this.urlPrefix+'/all',
-      {},
-      {headers: new Headers({'Content-Type': 'application/json'})})
+      {}
+    )
     .toPromise()
     .then(function (result) {
       if(result.json().statusCode == 0){
@@ -99,8 +99,8 @@ export class UserService {
   remove(id: string){
     return this.http.delete(
       this.baseUrl+this.urlPrefix+'/delete/'+id,
-      {},
-      {headers: new Headers({'Content-Type': 'application/json'})})
+      {}
+    )
     .toPromise()
     .then(function (result) {
       if(result.json().statusCode == 0){
