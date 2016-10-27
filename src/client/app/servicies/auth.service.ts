@@ -31,14 +31,17 @@ export class AuthService implements CanActivate {
                   return true;
                 }else{
                   self.router.navigate(['/login']);
+                  self.setToken(null);
                   return false;
                 }
               } else{ // checkTokenResponse.data.name && checkTokenResponse.data.message
                 self.router.navigate(['/login']);
+                self.setToken(null);
                 return false;
               }
             }
             self.router.navigate(['/login']);
+            self.setToken(null);
             return false;
           }).catch(this.handleError);
       } else{
@@ -107,9 +110,11 @@ export class AuthService implements CanActivate {
             self.router.navigate(['/index']);
             return true;
           } else{
+            self.setToken(null);
             return false;
           }
         } else{
+          self.setToken(null);
           return false;
         }
     });
