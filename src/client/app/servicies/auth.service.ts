@@ -106,6 +106,7 @@ export class AuthService implements CanActivate {
         if(data){
           if(data && data.login && data.token){
             self.setToken(data.token);
+            self.setCurrentUser(data);
             self.router.navigate(['/index']);
             return true;
           } else{

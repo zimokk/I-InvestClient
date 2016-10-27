@@ -8,7 +8,9 @@ import {AuthService} from "../../servicies/auth.service";
 })
 
 export class TopNavComponent {
-  constructor(private authService: AuthService){}
+  constructor(private authService: AuthService){
+    this.currentUser = this.authService.getCurrentUser();
+  }
 
   logout():void{
     this.authService.logout();
