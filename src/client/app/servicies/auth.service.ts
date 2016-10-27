@@ -27,29 +27,23 @@ export class AuthService implements CanActivate {
                 self.setCurrentUser(data);
                 let userRole = data.role;
                 if(self.isRoleAccessAllowed(roles, userRole)){
-                  console.log('allowed');
                   return true;
                 }else{
-                  self.router.navigate(['/login']);
-                  self.setToken(null);
+                  self.logout();
                   return false;
                 }
               } else{ // checkTokenResponse.data.name && checkTokenResponse.data.message
-                self.router.navigate(['/login']);
-                self.setToken(null);
+                self.logout();
                 return false;
               }
             }
-            self.router.navigate(['/login']);
-            self.setToken(null);
+            self.logout();
             return false;
           }).catch(this.handleError);
       } else{
-        console.log('no roles');
         return true;
       }
     } else{
-      console.log('no data');
       return true;
     }
   }
@@ -93,6 +87,11 @@ export class AuthService implements CanActivate {
       JSON.stringify({token: token}),
       {headers: new Headers({'Content-Type': 'application/json'})})
     .toPromise()
+  }
+
+  logout(){
+    self.setToken(null);
+    self.router.navigate(['/login']);
   }
 
   login(login: string, password: string):Observable<boolean> | boolean {

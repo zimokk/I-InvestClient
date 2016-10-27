@@ -16,17 +16,15 @@ export class SignupComponent {
   }
 
   onSubmit(){
-    console.dir(this.login);
     let self = this;
-    self.notificationService.alert("title","content");
-    console.dir(this.notificationService);
-  }
-
-  register(event): void{
-    console.dir(this);
-    debugger;
-    if(password == repeatedPassword){
-      this.userService.register(this.login, this.password);
+    if(this.password == this.repeatedPassword){
+      this.userService.register(this.login, this.password).then(function (registrationResult) {
+        if(registrationResult){
+          self.notificationService.success("Successful registration","Enter, using your login & password");
+        } else{
+          self.notificationService.error("Registration error","Check entered data");
+        }
+      });
     }
   }
 }
