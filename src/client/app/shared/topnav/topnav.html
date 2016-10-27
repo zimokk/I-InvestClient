@@ -1,7 +1,7 @@
 <nav class="navbar navbar-dark bg-inverse navbar-fixed-top topnav">
     <div class="collapse navbar-toggleable-xs clearfix text-center">
         <a class="navbar-brand" [routerLink]="['/dashboard','/home']">SB Admin BS 4 Angular2</a>
-        
+
         <ul class="nav navbar-nav top-nav navbar-right pull-xs-right top-right-nav">
             <li class="nav-item buy-now">
                 <a href="https://github.com/start-angular/SB-Admin-BS4-Angular-2/archive/master.zip" class="btn btn-default-outline buy-now-btn" role="button" style="padding: .375rem 1rem !important; border-color: #999;">Download Now</a>
@@ -102,9 +102,9 @@
                     </li>
                     <li class="divider"></li>
                     <li>
-                        <a class="dropdown-item" href="javascript:;" [routerLink]="['/']">
+                        <button class="dropdown-item" (click)="logout()">
                             <i class="fa fa-fw fa-power-off"></i> Log Out
-                        </a>
+                        </button>
                     </li>
                 </ul>
             </li>

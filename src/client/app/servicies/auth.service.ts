@@ -54,7 +54,7 @@ export class AuthService implements CanActivate {
   }
 
   getCurrentUser(){
-
+    return this.currentUser;
   }
 
   isRoleAccessAllowed(allowedRoles: Array<string>, userRole: string): boolean{
@@ -90,8 +90,8 @@ export class AuthService implements CanActivate {
   }
 
   logout(){
-    self.setToken(null);
-    self.router.navigate(['/login']);
+    this.setToken(null);
+    this.router.navigate(['/login']);
   }
 
   login(login: string, password: string):Observable<boolean> | boolean {

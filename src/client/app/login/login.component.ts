@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {NgForm} from '@angular/forms';
 
 import { AuthService } from '../servicies/auth.service';
 import {NotificationsService} from "angular2-notifications/components";
