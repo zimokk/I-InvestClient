@@ -11,7 +11,7 @@ export class UserService {
   register(user) {
     return this.http.post(
       this.baseUrl+this.urlPrefix+'/new',
-      JSON.stringify(user),
+      JSON.stringify({user: user}),
       {headers: new Headers({'Content-Type': 'application/json'})})
     .toPromise()
     .then(function (result) {
@@ -77,7 +77,7 @@ export class UserService {
   update(user){
     return this.http.put(
       this.baseUrl+this.urlPrefix+'/update/'+id,
-      JSON.stringify(user),
+      JSON.stringify({user:user}),
       {headers: new Headers({'Content-Type': 'application/json'})})
     .toPromise()
     .then(function (result) {
