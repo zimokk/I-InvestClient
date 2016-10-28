@@ -5,6 +5,7 @@ import { Observable } from "rxjs/Rx";
 
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/toPromise';
+import {NotificationsService} from "angular2-notifications/components";
 
 
 @Injectable()
@@ -12,7 +13,7 @@ export class AuthService implements CanActivate {
   private urlPrefix = "/authorize";
   private baseUrl = "http://localhost:8000";
   private currentUser = {};
-  constructor(private http: Http, private router: Router){}
+  constructor(private http: Http, private router: Router, private  notificationService: NotificationsService){}
 
   canActivate(route: ActivatedRouteSnapshot,  state: RouterStateSnapshot):Observable<boolean> | boolean {
     if(route.data){
@@ -29,11 +30,12 @@ export class AuthService implements CanActivate {
                 if(self.isRoleAccessAllowed(roles, userRole)){
                   return true;
                 }else{
-                  self.logout();
+                  self.notificationService.error('Permissions error', 'Access denied');
+                  self.router.navigate(['/dashboard/home']);
                   return false;
                 }
               } else{ // checkTokenResponse.data.name && checkTokenResponse.data.message
-                self.logout();
+                self.notificationService.error('Authentication error', 'Server not available');
                 return false;
               }
             }

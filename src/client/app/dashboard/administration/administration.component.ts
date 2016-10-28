@@ -37,7 +37,8 @@ export class AdministrationComponent {
     this.userService.getAll().then(function (result) {
       if(result.statusCode == 0){
         self.users = result.result;
-        console.dir(self.users);
+      } else {
+        self.notificationService.error("Error", "An error quering users list");
       }
     })
   }
