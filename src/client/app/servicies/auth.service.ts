@@ -20,10 +20,12 @@ export class AuthService implements CanActivate {
       let roles = route.data["roles"] as Array<string>;
       let token = this.getToken();
       let self = this;
+      console.log(roles);
       if(roles){
         return this.checkToken(token).then(function (checkTokenResponse) {
           if(checkTokenResponse){
             let data = checkTokenResponse.json().data;
+            console.log(data);
               if(data && data.role && data.login){
                 self.setCurrentUser(data);
                 let userRole = data.role;
@@ -34,8 +36,13 @@ export class AuthService implements CanActivate {
                   self.router.navigate(['/dashboard/home']);
                   return false;
                 }
-              } else{ // checkTokenResponse.data.name && checkTokenResponse.data.message
-                self.notificationService.error('Authentication error', 'Server not available');
+              } else{
+                if(data){ // checkTokenResponse.data.name && checkTokenResponse.data.message
+                  self.notificationService.error('Permissions error', 'Please, authorize');
+                } else{ 
+                  self.notificationService.error('Authentication error', 'Server not available');
+                }
+                self.router.navigate(['/login']);
                 return false;
               }
             }
