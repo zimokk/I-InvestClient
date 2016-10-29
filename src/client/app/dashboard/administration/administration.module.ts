@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AdministrationComponent } from './administration.component';
 import {UserService} from "../../servicies/user.service";
+import {UserModule} from "./user/user.module";
+import {AdministrationHomeModule} from "./administration-home/administration-home.module";
 
 @NgModule({
-  imports: [CommonModule],
-  declarations: [AdministrationComponent],
-  exports: [AdministrationComponent],
+  imports: [CommonModule, UserModule, AdministrationHomeModule],
+  declarations: [],
+  exports: [],
   providers: [UserService]
 })
 

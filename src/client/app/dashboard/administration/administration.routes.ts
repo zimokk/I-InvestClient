@@ -1,11 +1,15 @@
-import { Route } from '@angular/router';
-import { AdministrationComponent } from './index';
+import { Route, provideRouter, RouterConfig} from '@angular/router';
 import {AuthService} from "../../servicies/auth.service";
+import {UserRoutes} from "./user/user.routes";
+import {AdministrationHomeRoutes} from "./administration-home/administration-home.routes";
 
 export const AdministrationRoutes: Route[] = [
   {
     path: 'administration',
-    component: AdministrationComponent,
+    children: [
+      ...AdministrationHomeRoutes,
+      ...UserRoutes
+    ],
     data: {roles:['admin']},
     canActivate: [AuthService]
   }

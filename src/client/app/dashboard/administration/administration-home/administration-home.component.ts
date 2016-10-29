@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
-import {UserService} from "../../servicies/user.service";
+import {UserService} from "../../../servicies/user.service";
 import {NotificationsService} from "angular2-notifications/components";
 
 @Component({
   moduleId: module.id,
-  selector: 'administration-cmp',
-  templateUrl: 'administration.component.html'
+  selector: 'administration-home-cmp',
+  templateUrl: 'administration-home.component.html'
 })
 
-export class AdministrationComponent {
+export class AdministrationHomeComponent {
   public users = [];
 
   constructor(private userService: UserService, private  notificationService: NotificationsService) {
@@ -42,5 +42,4 @@ export class AdministrationComponent {
       }
     })
   }
-
 }
