@@ -17,6 +17,7 @@ import { DashboardComponent } from './dashboard.component';
 
 import {TopNavComponent} from '../shared/index';
 import {SidebarComponent} from '../shared/index';
+import {LoaderComponent} from '../shared/index'
 
 import {AuthService} from '../servicies/auth.service'
 import {AdministrationModule} from "./administration/administration.module";
@@ -38,8 +39,8 @@ import {AdministrationModule} from "./administration/administration.module";
         BlankPageModule,
       AdministrationModule
     ],
-    declarations: [DashboardComponent, TopNavComponent, SidebarComponent],
-    exports: [DashboardComponent, TopNavComponent, SidebarComponent],
+    declarations: [DashboardComponent, TopNavComponent, SidebarComponent, LoaderComponent],
+    exports: [DashboardComponent, TopNavComponent, SidebarComponent, LoaderComponent],
     providers: [AuthService]
 })
 
