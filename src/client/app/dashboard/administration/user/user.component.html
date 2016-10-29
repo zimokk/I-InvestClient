@@ -1,1 +1,4 @@
-<div>User</div>
+<div>
+  <loader *ngIf="isLoading"></loader>
+</div>
+<div *ngIf="!isLoading">User</div>

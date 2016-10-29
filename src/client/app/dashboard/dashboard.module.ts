@@ -17,10 +17,10 @@ import { DashboardComponent } from './dashboard.component';
 
 import {TopNavComponent} from '../shared/index';
 import {SidebarComponent} from '../shared/index';
-import {LoaderComponent} from '../shared/index'
 
 import {AuthService} from '../servicies/auth.service'
 import {AdministrationModule} from "./administration/administration.module";
+import {LoaderModule} from "../shared/loader/loader.module";
 
 
 @NgModule({
@@ -37,10 +37,11 @@ import {AdministrationModule} from "./administration/administration.module";
     	BSComponentModule,
         BSElementModule,
         BlankPageModule,
-      AdministrationModule
+      AdministrationModule,
+      LoaderModule
     ],
-    declarations: [DashboardComponent, TopNavComponent, SidebarComponent, LoaderComponent],
-    exports: [DashboardComponent, TopNavComponent, SidebarComponent, LoaderComponent],
+    declarations: [DashboardComponent, TopNavComponent, SidebarComponent],
+    exports: [DashboardComponent, TopNavComponent, SidebarComponent],
     providers: [AuthService]
 })
 

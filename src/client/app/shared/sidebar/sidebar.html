@@ -42,9 +42,6 @@
         <a [routerLink]="['blankpage']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-file-o"></i> &nbsp;BlankPage
         </a>
-        <a class="list-group-item more-themes" href="http://www.strapui.com/" >
-            More Themes
-        </a>
         <a [routerLink]="['administration']" [routerLinkActive]="['router-link-active']" *ngIf="currentUser.role == 'admin'" class="list-group-item">
           <i class="fa fa-users"></i> Administration
         </a>

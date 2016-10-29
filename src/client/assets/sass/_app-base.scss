@@ -13,7 +13,7 @@ $topnav-background-color: #222;
     color: #FFF;
     background: #222;
     font-size: 23px;
-    z-index: 3;
+    z-index: 10;
     display: none;
 }
 .btn:focus{
@@ -23,7 +23,7 @@ $topnav-background-color: #222;
   border-radius: 0;
   background-color: $topnav-background-color;
   padding : 6px;
-    z-index:2;
+    z-index:9;
     .text-center{
         text-align: center;
         padding-left : 0;
@@ -71,7 +71,7 @@ a:hover{
 .sidebar{
   border-radius: 0;
   position: fixed;
-    z-index: 3;
+    z-index: 10;
     top: 50px;
     left: 225px;
     width: 225px;
@@ -163,6 +163,7 @@ a:hover{
 }
 .main-container{
   margin: 50px 0 0 225px;
+    padding: 10px;
     -ms-overflow-x: hidden;
         overflow-x: hidden;
     position: relative;
@@ -203,7 +204,7 @@ a:hover{
 /* RTL ashboard */
 .sidebarPushRight{
     left: 225px !important;
-    z-index:10;
+    z-index:20;
 }
 .mainContainerPushLeft{
     margin : 55px 255px 0 0;
