@@ -12,8 +12,6 @@ import { BSElementRoutes } from './bs-element/index';
 import { AuthService } from '../servicies/auth.service'
 
 import { DashboardComponent } from './index';
-import {HomeComponent} from "./home/home.component";
-import {routes} from "../app.routes";
 import {AdministrationRoutes} from "./administration/administration.routes";
 
 export const DashboardRoutes: Route[] = [

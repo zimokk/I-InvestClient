@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,Input } from '@angular/core';
 import {AuthService} from "../../servicies/auth.service";
 
 @Component({
@@ -8,8 +8,9 @@ import {AuthService} from "../../servicies/auth.service";
 })
 
 export class TopNavComponent {
+  @Input() currentUser;
+
   constructor(private authService: AuthService){
-    this.currentUser = this.authService.getCurrentUser();
   }
 
   logout():void{

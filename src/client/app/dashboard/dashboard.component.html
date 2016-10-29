@@ -1,5 +1,5 @@
-<top-nav></top-nav>
-<sidebar-cmp></sidebar-cmp>
+<top-nav [currentUser]="currentUser"></top-nav>
+<sidebar-cmp [currentUser]="currentUser"></sidebar-cmp>
 <section class="main-container" [ngClass]="{sidebarPushRight: isActive}">
 	<router-outlet></router-outlet>
 </section>

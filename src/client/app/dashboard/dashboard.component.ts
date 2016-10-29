@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {NotificationsService} from "angular2-notifications/components";
+import {AuthService} from "../servicies/auth.service";
 
 @Component({
 	moduleId: module.id,
@@ -7,4 +7,12 @@ import {NotificationsService} from "angular2-notifications/components";
 	templateUrl: 'dashboard.component.html'
 })
 
-export class DashboardComponent { }
+export class DashboardComponent {
+  constructor(private authService: AuthService){
+  }
+
+  ngOnInit(){
+    this.currentUser = this.authService.getCurrentUser();
+  }
+
+}
