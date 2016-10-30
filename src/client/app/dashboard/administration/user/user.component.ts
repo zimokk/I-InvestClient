@@ -25,12 +25,25 @@ export class UserComponent {
   ngOnInit(){
     let params = this.route.params;
     let id = params.value.id;
+    let self = this;
     if(!id){
-      this.notificationService.alert("Error", "User not found");
-      this.router.navigate(['/dashboard']);
+      self.userNotFound();
     } else{
-
+      this.userService.get(id).then(function (data) {
+        if(data.statusCode == 0){
+          console.log(data);
+          self.currentUser = data.data;
+          self.isLoading = false;
+        } else {
+          self.userNotFound();
+        }
+      });
     }
+  }
+
+  private userNotFound():void{
+    this.notificationService.alert("Error", "User not found");
+    this.router.navigate(['/dashboard']);
   }
 
 }

@@ -39,7 +39,7 @@ export class UserService {
     .then(function (result) {
       if(result.json().statusCode == 0){
         return {
-          result: result.json().data,
+          data: result.json().data,
           statusCode: 0
         }
       } else{
