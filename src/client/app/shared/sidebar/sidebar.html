@@ -42,6 +42,9 @@
         <a [routerLink]="['blankpage']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-file-o"></i> &nbsp;BlankPage
         </a>
+        <a [routerLink]="['companies']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+          <i class="fa fa-building-o"></i> Companies
+        </a>
         <a [routerLink]="['administration']" [routerLinkActive]="['router-link-active']" *ngIf="currentUser.role == 'admin'" class="list-group-item">
           <i class="fa fa-users"></i> Administration
         </a>

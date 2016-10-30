@@ -21,6 +21,7 @@ import {SidebarComponent} from '../shared/index';
 import {AuthService} from '../servicies/auth.service'
 import {AdministrationModule} from "./administration/administration.module";
 import {LoaderModule} from "../shared/loader/loader.module";
+import {CompaniesModule} from "./companies/companies.module";
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import {LoaderModule} from "../shared/loader/loader.module";
         BSElementModule,
         BlankPageModule,
       AdministrationModule,
-      LoaderModule
+      LoaderModule,
+      CompaniesModule
     ],
     declarations: [DashboardComponent, TopNavComponent, SidebarComponent],
     exports: [DashboardComponent, TopNavComponent, SidebarComponent],
