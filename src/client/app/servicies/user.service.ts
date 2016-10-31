@@ -117,4 +117,26 @@ export class UserService {
       }
     });
   }
+
+  ban(id: string){
+    return this.http.post(
+      this.baseUrl+this.urlPrefix+'/ban/'+id,
+      {},
+      {headers: new Headers({'Content-Type': 'application/json'})})
+      .toPromise()
+      .then(function (result) {
+        if(result.json().statusCode == 0){
+          return {
+            data: result.json().data,
+            statusCode: 0
+          }
+        } else{
+          return{
+            statusCode: 500,
+            err: result.json().data,
+            message: result.json().message
+          }
+        }
+      });
+  }
 }
