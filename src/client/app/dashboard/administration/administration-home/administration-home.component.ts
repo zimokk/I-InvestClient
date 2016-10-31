@@ -10,6 +10,7 @@ import {NotificationsService} from "angular2-notifications/components";
 
 export class AdministrationHomeComponent {
   public users = [];
+  public isLoading = true;
 
   constructor(private userService: UserService, private  notificationService: NotificationsService) {
   }
@@ -20,6 +21,7 @@ export class AdministrationHomeComponent {
 
   public removeUser(user) :void{
     let self = this;
+    self.toggleLoader();
     this.userService.remove(user._id).then(function (result) {
       if(result.statusCode == 0){
         self.user = result.result;
@@ -28,6 +30,7 @@ export class AdministrationHomeComponent {
         self.notificationService.error("Error", "An error occured");
         self.users.push(user);
       }
+      self.toggleLoader();
     });
     this.users.splice(this.users.indexOf(user),1);
   }
@@ -40,6 +43,14 @@ export class AdministrationHomeComponent {
       } else {
         self.notificationService.error("Error", "An error quering users list");
       }
+      self.toggleLoader();
     })
+  }
+  
+  private toggleLoader(): void{
+    let self = this;
+    setTimeout(function () {
+      self.isLoading = !self.isLoading;
+    }, 500)
   }
 }
