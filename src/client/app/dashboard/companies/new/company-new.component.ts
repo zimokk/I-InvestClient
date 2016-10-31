@@ -6,14 +6,14 @@ import {CompaniesService} from "../../../servicies/company.service";
 
 @Component({
   moduleId: module.id,
-  selector: 'company-cmp',
-  templateUrl: 'company.component.html',
+  selector: 'company-new-cmp',
+  templateUrl: 'company-new.component.html',
   directives: [LoaderComponent]
 })
 
-export class CompanyComponent {
+export class CompanyNewComponent {
   public currentCompany = {};
-  public isLoading = true;
+  public isLoading = false;
 
   constructor(
     private  notificationService: NotificationsService,
@@ -23,26 +23,7 @@ export class CompanyComponent {
   }
 
   ngOnInit(){
-    let params = this.route.params;
-    let id = params.value.id;
-    let self = this;
-    if(!id){
-      self.companyNotFound();
-    } else{
-      this.companiesService.get(id).then(function (data) {
-        if(data.statusCode == 0){
-          self.currentCompany = data.data;
-          self.toggleLoader();
-        } else {
-          self.companyNotFound();
-        }
-      });
-    }
-  }
 
-  private companyNotFound():void{
-    this.notificationService.alert("Error", "Company not found");
-    this.router.navigate(['/dashboard/companies']);
   }
 
   private toggleLoader(): void{
