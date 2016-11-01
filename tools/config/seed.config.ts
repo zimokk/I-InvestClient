@@ -144,7 +144,7 @@ export class SeedConfig {
    * `index.html`.
    * @type {string}
    */
-  APP_TITLE = 'Welcome to angular2-seed!';
+  APP_TITLE = 'I-Invest';
 
   /**
    * The base folder of the applications source files.
@@ -339,6 +339,8 @@ export class SeedConfig {
         'node_modules/@angular/platform-browser-dynamic/bundles/platform-browser-dynamic-testing.umd.js',
       '@angular/router/testing': 'node_modules/@angular/router/bundles/router-testing.umd.js',
 
+      'angular2-click-to-edit': 'node_modules/angular2-click-to-edit',
+
       'rxjs/*': 'node_modules/rxjs/*',
       'app/*': '/app/*',
       // For test config
@@ -346,7 +348,8 @@ export class SeedConfig {
       '*': 'node_modules/*'
     },
     packages: {
-      rxjs: { defaultExtension: 'js' }
+      rxjs: { defaultExtension: 'js' },
+      'angular2-click-to-edit': { main: 'index' }
     }
   };
 
