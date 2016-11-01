@@ -27,7 +27,7 @@ export class AdministrationHomeComponent {
         self.user = result.result;
         self.notificationService.success("Success", "User removed");
       } else{
-        self.notificationService.error("Error", "An error occured");
+        self.notificationService.error("Error", "An error occurred");
         self.users.push(user);
       }
       self.toggleLoader();
@@ -41,16 +41,60 @@ export class AdministrationHomeComponent {
       if(result.statusCode == 0){
         self.users = result.result;
       } else {
-        self.notificationService.error("Error", "An error quering users list");
+        self.notificationService.error("Error", "An error querying users list");
       }
       self.toggleLoader();
     })
   }
-  
+
   private toggleLoader(): void{
     let self = this;
-    setTimeout(function () {
-      self.isLoading = !self.isLoading;
-    }, 500)
+    if(!this.isLoading){
+      self.isLoading = true;
+    } else{
+      setTimeout(function () {
+        self.isLoading = false;
+      }, 500)
+    }
+  }
+
+  public toggleBan(user):void{
+    if(user.isBanned){
+      this.enable(user);
+    }else{
+      this.ban(user);
+    }
+  }
+
+  public enable(user) :void{
+    let self = this;
+    self.toggleLoader();
+    this.userService.enable(user._id).then(function (result) {
+      if(result.statusCode == 0){
+        self.user = result.result;
+        self.notificationService.success("Success", "User account enabled");
+      } else{
+        self.notificationService.error("Error", "An error occurred");
+        user.isBanned = true;
+      }
+      self.toggleLoader();
+    });
+    user.isBanned = false;
+  }
+
+  public ban(user) :void{
+    let self = this;
+    self.toggleLoader();
+    this.userService.ban(user._id).then(function (result) {
+      if(result.statusCode == 0){
+        self.user = result.result;
+        self.notificationService.success("Success", "User banned");
+      } else{
+        self.notificationService.error("Error", "An error occurred");
+        user.isBanned = false;
+      }
+      self.toggleLoader();
+    });
+    user.isBanned = true;
   }
 }
