@@ -26,6 +26,8 @@ export class AdministrationHomeComponent {
       if(result.statusCode == 0){
         self.user = result.data;
         self.notificationService.success("Success", "User removed");
+      } else if(result.statusCode == 404){
+        self.notificationService.error("Error",registrationResult.message);
       } else{
         self.notificationService.error("Error", "An error occurred");
         self.users.push(user);
@@ -40,6 +42,8 @@ export class AdministrationHomeComponent {
     this.userService.getAll().then(function (result) {
       if(result.statusCode == 0){
         self.users = result.data;
+      } else if(result.statusCode == 404){
+        self.notificationService.error("Error",registrationResult.message);
       } else {
         self.notificationService.error("Error", "An error querying users list");
       }
@@ -73,6 +77,8 @@ export class AdministrationHomeComponent {
       if(result.statusCode == 0){
         self.user = result.data;
         self.notificationService.success("Success", "User account enabled");
+      } else if(result.statusCode == 404){
+        self.notificationService.error("Error",registrationResult.message);
       } else{
         self.notificationService.error("Error", "An error occurred");
         user.isBanned = true;
@@ -89,6 +95,8 @@ export class AdministrationHomeComponent {
       if(result.statusCode == 0){
         self.user = result.data;
         self.notificationService.success("Success", "User banned");
+      } else if(result.statusCode == 404){
+        self.notificationService.error("Error",registrationResult.message);
       } else{
         self.notificationService.error("Error", "An error occurred");
         user.isBanned = false;

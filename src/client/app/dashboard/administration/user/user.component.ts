@@ -33,6 +33,8 @@ export class UserComponent {
         if(data.statusCode == 0){
           self.currentUser = data.data;
           self.toggleLoader();
+        } else if(result.statusCode == 404){
+          self.notificationService.error("Error",registrationResult.message);
         } else {
           self.userNotFound();
         }
@@ -47,9 +49,13 @@ export class UserComponent {
 
   private toggleLoader(): void{
     let self = this;
-    setTimeout(function () {
-      self.isLoading = !self.isLoading;
-    }, 500)
+    if(!this.isLoading){
+      self.isLoading = true;
+    } else{
+      setTimeout(function () {
+        self.isLoading = false;
+      }, 500)
+    }
   }
 
 }

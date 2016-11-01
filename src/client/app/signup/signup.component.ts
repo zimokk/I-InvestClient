@@ -34,7 +34,10 @@ export class SignupComponent {
         if(registrationResult.statusCode == 0){
           self.notificationService.success("Successful registration","Enter, using your login & password");
           self.router.navigate(['/login']);
-        } else{
+        } else if(registrationResult.statusCode == 404){
+          self.notificationService.error("Error",registrationResult.message);
+        }
+        else {
           self.notificationService.error("Registration error","Check entered data");
         }
       });

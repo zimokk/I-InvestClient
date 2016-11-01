@@ -24,6 +24,8 @@ export class CompaniesHomeComponent {
     this.companiesService.getAll().then(function (result) {
       if(result.statusCode == 0){
         self.companies = result.data;
+      } else if(result.statusCode == 404){
+        self.notificationService.error("Error",registrationResult.message);
       } else {
         self.notificationService.error("Error", "An error quering users list");
       }
@@ -33,8 +35,12 @@ export class CompaniesHomeComponent {
 
   private toggleLoader(): void{
     let self = this;
-    setTimeout(function () {
-      self.isLoading = !self.isLoading;
-    }, 500)
+    if(!this.isLoading){
+      self.isLoading = true;
+    } else{
+      setTimeout(function () {
+        self.isLoading = false;
+      }, 500)
+    }
   }
 }

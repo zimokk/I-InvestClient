@@ -33,6 +33,8 @@ export class CompanyComponent {
         if(result.statusCode == 0){
           self.currentCompany = result.data;
           self.toggleLoader();
+        } else if(result.statusCode == 404){
+          self.notificationService.error("Error",result.message);
         } else {
           self.companyNotFound();
         }
@@ -47,9 +49,13 @@ export class CompanyComponent {
 
   private toggleLoader(): void{
     let self = this;
-    setTimeout(function () {
-      self.isLoading = !self.isLoading;
-    }, 500)
+    if(!this.isLoading){
+      self.isLoading = true;
+    } else{
+      setTimeout(function () {
+        self.isLoading = false;
+      }, 500)
+    }
   }
 
 }
