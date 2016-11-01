@@ -24,7 +24,7 @@ export class AdministrationHomeComponent {
     self.toggleLoader();
     this.userService.remove(user._id).then(function (result) {
       if(result.statusCode == 0){
-        self.user = result.result;
+        self.user = result.data;
         self.notificationService.success("Success", "User removed");
       } else{
         self.notificationService.error("Error", "An error occurred");
@@ -39,7 +39,7 @@ export class AdministrationHomeComponent {
     let self = this;
     this.userService.getAll().then(function (result) {
       if(result.statusCode == 0){
-        self.users = result.result;
+        self.users = result.data;
       } else {
         self.notificationService.error("Error", "An error querying users list");
       }
@@ -71,7 +71,7 @@ export class AdministrationHomeComponent {
     self.toggleLoader();
     this.userService.enable(user._id).then(function (result) {
       if(result.statusCode == 0){
-        self.user = result.result;
+        self.user = result.data;
         self.notificationService.success("Success", "User account enabled");
       } else{
         self.notificationService.error("Error", "An error occurred");
@@ -87,7 +87,7 @@ export class AdministrationHomeComponent {
     self.toggleLoader();
     this.userService.ban(user._id).then(function (result) {
       if(result.statusCode == 0){
-        self.user = result.result;
+        self.user = result.data;
         self.notificationService.success("Success", "User banned");
       } else{
         self.notificationService.error("Error", "An error occurred");

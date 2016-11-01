@@ -29,9 +29,9 @@ export class CompanyComponent {
     if(!id){
       self.companyNotFound();
     } else{
-      this.companiesService.get(id).then(function (data) {
-        if(data.statusCode == 0){
-          self.currentCompany = data.data;
+      this.companiesService.get(id).then(function (result) {
+        if(result.statusCode == 0){
+          self.currentCompany = result.data;
           self.toggleLoader();
         } else {
           self.companyNotFound();

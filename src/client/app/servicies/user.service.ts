@@ -1,142 +1,40 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers} from '@angular/http';
+import { Router }    from '@angular/router';
+import { HttpService } from './shared/httpService'
 
 @Injectable()
-export class UserService {
-  private urlPrefix = "/user";
-  private baseUrl = "http://localhost:8000";
+export class UserService extends HttpService{
 
-  constructor(private http: Http){}
+  constructor(private http: Http, private router: Router){
+    super("http://localhost:8000/user");
+  }
 
-  register(user) {
-    return this.http.post(
-      this.baseUrl+this.urlPrefix+'/new',
-      JSON.stringify({user: user}),
-      {headers: new Headers({'Content-Type': 'application/json'})})
-    .toPromise()
-    .then(function (result) {
-      if(result.json().statusCode == 0){
-        return {
-          result: result.json().data,
-          statusCode: 0
-        }
-      } else{
-        return{
-          statusCode: 500,
-          err: result.json().data,
-          message: result.json().message
-        }
-      }
-    });
+  register(user){
+    return this.doPost('/new',JSON.stringify({user: user}));
   }
 
   get(id: string){
-    return this.http.get(
-      this.baseUrl+this.urlPrefix+'/get/'+id,
-      {},
-      {headers: new Headers({'Content-Type': 'application/json'})})
-    .toPromise()
-    .then(function (result) {
-      if(result.json().statusCode == 0){
-        return {
-          data: result.json().data,
-          statusCode: 0
-        }
-      } else{
-        return{
-          statusCode: 500,
-          err: result.json().data,
-          message: result.json().message
-        }
-      }
-    });
+    return this.doGet('/get/'+id,{});
   }
 
   getAll(){
-    return this.http.get(
-      this.baseUrl+this.urlPrefix+'/all',
-      {}
-    )
-    .toPromise()
-    .then(function (result) {
-      if(result.json().statusCode == 0){
-        return {
-          result: result.json().data,
-          statusCode: 0
-        }
-      } else{
-        return{
-          statusCode: 500,
-          err: result.json().data,
-          message: result.json().message
-        }
-      }
-    });
+    return this.doGet('/all',{});
   }
 
   update(user){
-    return this.http.put(
-      this.baseUrl+this.urlPrefix+'/update/'+id,
-      JSON.stringify({user:user}),
-      {headers: new Headers({'Content-Type': 'application/json'})})
-    .toPromise()
-    .then(function (result) {
-      if(result.json().statusCode == 0){
-        return {
-          result: result.json().data,
-          statusCode: 0
-        }
-      } else{
-        return{
-          statusCode: 500,
-          err: result.json().data,
-          message: result.json().message
-        }
-      }
-    });
+    return this.doPut('/update/'+id,JSON.stringify({user:user}));
   }
 
   remove(id: string){
-    return this.http.delete(
-      this.baseUrl+this.urlPrefix+'/delete/'+id,
-      {}
-    )
-    .toPromise()
-    .then(function (result) {
-      if(result.json().statusCode == 0){
-        return {
-          result: result.json().data,
-          statusCode: 0
-        }
-      } else{
-        return{
-          statusCode: 500,
-          err: result.json().data,
-          message: result.json().message
-        }
-      }
-    });
+    return this.doDelete('/delete/'+id,{});
   }
 
   ban(id: string){
-    return this.http.post(
-      this.baseUrl+this.urlPrefix+'/ban/'+id,
-      {},
-      {headers: new Headers({'Content-Type': 'application/json'})})
-      .toPromise()
-      .then(function (result) {
-        if(result.json().statusCode == 0){
-          return {
-            data: result.json().data,
-            statusCode: 0
-          }
-        } else{
-          return{
-            statusCode: 500,
-            err: result.json().data,
-            message: result.json().message
-          }
-        }
-      });
+    return this.doPut('/ban/'+id,{});
+  }
+
+  enable(id: string){
+    return this.doPut('/enable/'+id,{});
   }
 }

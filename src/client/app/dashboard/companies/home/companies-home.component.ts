@@ -23,7 +23,7 @@ export class CompaniesHomeComponent {
     let self = this;
     this.companiesService.getAll().then(function (result) {
       if(result.statusCode == 0){
-        self.companies = result.result;
+        self.companies = result.data;
       } else {
         self.notificationService.error("Error", "An error quering users list");
       }
