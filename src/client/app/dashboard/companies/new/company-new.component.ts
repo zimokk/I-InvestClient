@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import {NotificationsService} from "angular2-notifications/components";
-import {LoaderComponent} from "../../../shared/loader/loader";
+import {LoaderComponent} from "../../../shared/loader/loader.component";
 import {CompaniesService} from "../../../servicies/company.service";
 
 @Component({
@@ -22,15 +22,19 @@ export class CompanyNewComponent {
     private companiesService: CompaniesService) {
   }
 
-  ngOnInit(){
+  onSubmit(){
 
   }
 
   private toggleLoader(): void{
     let self = this;
-    setTimeout(function () {
-      self.isLoading = !self.isLoading;
-    }, 500)
+    if(!this.isLoading){
+      self.isLoading = true;
+    } else{
+      setTimeout(function () {
+        self.isLoading = false;
+      }, 500)
+    }
   }
 
 }

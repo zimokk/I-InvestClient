@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import {NotificationsService} from "angular2-notifications/components";
-import {LoaderComponent} from "../../../shared/loader/loader";
+import {LoaderComponent} from "../../../shared/loader/loader.component";
 import {CompaniesService} from "../../../servicies/company.service";
 
 @Component({
