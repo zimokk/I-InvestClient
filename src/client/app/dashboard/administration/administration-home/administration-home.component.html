@@ -43,16 +43,9 @@
           </tr>
           </tbody>
         </table>
-        <div class="footer-pagination pull-right">
-          <pagination-controls #pagination (pageChange)="pageNumber = $event" class="row">
-            <input type="button" class="btn btn-sm btn-primary bound-button" [disabled]="pagination.isFirstPage()" (click)="pagination.previous()" value="Previous">
-            <input type="button"
-                   *ngFor="let page of pagination.pages"
-                   class="btn btn-sm btn-primary page-button" value="{{ page.label }}"
-                   (click)="pagination.setCurrent(page.value)"
-                   [disabled]="pagination.getCurrent() == page.value">
-            <input class="btn  btn-sm btn-primary bound-button" type="button" [disabled]="pagination.isLastPage()" (click)="pagination.next()" value="Next">
-          </pagination-controls>
+        <div class="pull-right">
+          <pagination [totalItems]="users.length" [(ngModel)]="pageNumber" [maxSize]="5" class="pagination-sm"
+                      [boundaryLinks]="true" [rotate]="false" (numPages)="pageNumber = $event"></pagination>
         </div>
       </div>
     </div>
