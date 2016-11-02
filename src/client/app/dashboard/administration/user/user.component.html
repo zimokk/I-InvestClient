@@ -1,6 +1,14 @@
 <div>
   <loader *ngIf="isLoading"></loader>
 </div>
-<div>
-  {{currentUser.login}}<---
+<div class="row">
+  <div class="col-md-12 card card-block">
+    <div class="col-lg-6">
+      Avatar
+    </div>
+    <div class="col-lg-6">
+      <h4 class="card-title">{{currentUser.login}}</h4>
+      <ndv-edit [title]="'Login'"  [permission]="true" [placeholder]='currentUser.login' (onSave)='saveChanges($event)' [min]="3"></ndv-edit>
+    </div>
+  </div>
 </div>

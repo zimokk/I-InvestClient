@@ -2,13 +2,14 @@ import { Component } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import {UserService} from "../../../servicies/user.service";
 import {NotificationsService} from "angular2-notifications/components";
-import {LoaderComponent} from "../../../shared/loader/loader";
+import {LoaderComponent} from "../../../shared/loader/loader.component";
+import { NDV_DIRECTIVES } from 'angular2-click-to-edit/components';
 
 @Component({
   moduleId: module.id,
   selector: 'user-cmp',
   templateUrl: 'user.component.html',
-  directives: [LoaderComponent]
+  directives: [LoaderComponent, NDV_DIRECTIVES]
 })
 
 export class UserComponent {
@@ -20,6 +21,10 @@ export class UserComponent {
     private  notificationService: NotificationsService,
     private route: ActivatedRoute,
     private router: Router) {
+  }
+
+  saveChanges(event){
+    console.dir(event);
   }
 
   ngOnInit(){
