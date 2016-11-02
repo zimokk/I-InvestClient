@@ -97,7 +97,9 @@
                     <li>
                         <a class="dropdown-item"><i class="fa fa-fw fa-gear"></i> Settings</a>
                     </li>
-                    <li class="divider"></li>
+                    <li>
+                      <a class="dropdown-item" [routerLink]="['/dashboard/companies/my']"><i class="fa fa-fw fa-building-o"></i> My companies</a>
+                    </li>
                     <li>
                         <button class="dropdown-item" (click)="logout()">
                             <i class="fa fa-fw fa-power-off"></i> Log Out
