@@ -20,9 +20,15 @@ export class LoginComponent {
     let self = this;
     this.authService.login(login, password).then(function (result) {
       if(result){
-        self.notificationService.success("Success", 'You enter as ' + login);
+        if(result.statusCode == 500){
+          self.notificationService.error("Error", 'Wrong login/password');
+        } else if (result.statusCode == 403){
+          self.notificationService.error("Error", result.message);
+        } else {
+          self.notificationService.success("Success", 'You enter as ' + login);
+        }
       } else{
-        self.notificationService.error("Error", 'Wrong login/password');
+        self.notificationService.error("Error", 'Wrong login/password.');
       }
     });
   }

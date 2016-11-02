@@ -101,7 +101,7 @@ export class AuthService implements CanActivate {
     this.router.navigate(['/login']);
   }
 
-  login(login: string, password: string):Observable<boolean> | boolean {
+  login(login: string, password: string){
     let self = this;
     return this.http.post(
       self.baseUrl+this.urlPrefix,
@@ -118,11 +118,11 @@ export class AuthService implements CanActivate {
             return true;
           } else{
             self.setToken(null);
-            return false;
+            return response.json();
           }
         } else{
           self.setToken(null);
-          return false;
+          return response.json();
         }
     });
   }
