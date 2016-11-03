@@ -11,3 +11,15 @@ div.page-button-div{
   width: 150px;
   margin-right: 5px;
 }
+.popover{
+  border-radius: 0;
+  .popover-title{
+    background-color: #222;
+    color: beige;
+    text-align: center;
+  }
+  button{
+    border-radius: 0;
+    text-align: center;
+  };
+}

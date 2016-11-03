@@ -27,7 +27,13 @@
               <button class="btn btn-sm btn-info" [routerLink]="['user/:id', {id: user._id}]" >
                 <i class="fa fa-info" aria-hidden="true"></i>
               </button>
-              <button class="btn btn-sm btn-danger" (click)="removeUser(user)">
+              <button class="btn btn-sm btn-danger"
+                      mwlConfirm
+                      [title]="'Confirm removing'"
+                      [message]="'Are you sure?'"
+                      placement="left"
+                      (confirm)="removeUser(user)"
+                      [(isOpen)]="user.isOpen">
                 <i class="fa fa-ban"></i>
               </button>
             </td>

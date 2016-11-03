@@ -5,14 +5,17 @@ import { CommonModule } from '@angular/common'
 import {AdministrationHomeComponent} from "./administration-home.component";
 import {LoaderModule} from "../../../shared/loader/loader.module";
 import {Ng2PaginationModule} from "ng2-pagination/index";
-import {
-  PaginationModule
-} from 'ng2-bootstrap/ng2-bootstrap';
+
+import {ConfirmModule, ConfirmOptions, Position} from 'angular2-bootstrap-confirm';
+import {Positioning} from "angular2-bootstrap-confirm/position/index";
+
+import {PaginationModule} from 'ng2-bootstrap/ng2-bootstrap';
 
 @NgModule({
-  imports: [CommonModule, LoaderModule, RouterModule, Ng2PaginationModule, FormsModule, PaginationModule],
+  imports: [CommonModule, LoaderModule, RouterModule, Ng2PaginationModule, FormsModule, PaginationModule, ConfirmModule],
   declarations: [AdministrationHomeComponent],
-  exports: [AdministrationHomeComponent]
+  exports: [AdministrationHomeComponent],
+  providers: [ConfirmOptions, {provide: Position, useClass: Positioning}]
 })
 
 export class AdministrationHomeModule { }
