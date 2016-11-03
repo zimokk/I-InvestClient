@@ -22,6 +22,7 @@ import {AuthService} from '../servicies/auth.service'
 import {AdministrationModule} from "./administration/administration.module";
 import {LoaderModule} from "../shared/loader/loader.module";
 import {CompaniesModule} from "./companies/companies.module";
+import {ProfileModule} from "./profile/profile.module";
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import {CompaniesModule} from "./companies/companies.module";
         BSElementModule,
         BlankPageModule,
       AdministrationModule,
+      ProfileModule,
       LoaderModule,
       CompaniesModule
     ],
