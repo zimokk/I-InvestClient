@@ -3,33 +3,23 @@
   <div class="col-xl-12 col-lg-12">
     <h4>Basic example</h4>
     <div class="card card-block">
-      <div class="table-responsive">
-        <table class="table table-hover table-striped">
-          <thead>
-          <tr>
-            <th>id</th>
-            <th>Name</th>
-            <th>State</th>
-            <th>Budget</th>
-            <th>Foundation</th>
-            <th>Action</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr *ngFor="let company of companies">
-            <th>{{company._id}}</th>
-            <td>{{company.name}}</td>
-            <td>{{company.state}}</td>
-            <td>{{company.foundation}}</td>
-            <td>{{company.budget}}</td>
-            <td class="actions-column">
-              <button class="btn btn-sm btn-info" [routerLink]="['company/:id', {id: company._id}]" >
-                <i class="fa fa-info" aria-hidden="true"></i> More
-              </button>
-            </td>
-          </tr>
-          </tbody>
-        </table>
+      <div class="card col-md-6 col-lg-4 company-tile" *ngFor="let company of companies">
+        <div class="card-header card-default">
+          {{company.name}}
+        </div>
+        <div class="card-block">
+          State: {{company.state}}
+          Budget: {{company.budget}}
+          <span class="id-span">id: {{company._id}}</span>
+        </div>
+        <div class="card-footer card-default">
+          <a [routerLink]="['company/:id', {id: company._id}]">
+            <span class="pull-xs-left">View Details</span>
+            <span class="pull-xs-right"><i class="fa fa-arrow-circle-right"></i></span>
+            <span class="pull-xs-right year-span">{{company.foundation}}</span>
+            <div class="clearfix"></div>
+          </a>
+        </div>
       </div>
     </div>
   </div>
