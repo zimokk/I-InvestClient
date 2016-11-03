@@ -1,0 +1,24 @@
+div.profile-login{
+  min-height: 150px;
+  height: 100%;
+  border-bottom: solid 3px rgba(78, 78, 78, 0.19);
+  padding: 20px;
+  span, input{
+    font-size: 150%;
+  }
+  span.ndv-active{
+    background-color: inherit;
+    border: none;
+    &:hover{
+      border:none;
+    }
+  }
+}
+div.input-login{
+  position: absolute;
+  bottom:0;
+  max-width: 50%;
+}
+div.header-profile{
+  margin-bottom: 20px;
+}

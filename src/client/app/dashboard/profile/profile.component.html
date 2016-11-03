@@ -1,3 +1,18 @@
-<div>
-  My profile
+<div class="col-md-12">
+  <div class="col-md-12 header-profile">
+    <div class="col-md-3">
+      <img src="assets/img/SB-admin.png" width="150px" class="user-avatar" />
+    </div>
+    <div class="col-sm-9 profile-login">
+      <div class="input-login">
+        <ndv-edit [title]="'login'" [permission]="true" [placeholder]='"login"' (onSave)='saveChanges($event)' [min]="3"></ndv-edit>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6">
+    E-mail <ndv-edit [title]="'email'" [permission]="true" [placeholder]='"email@email.com"' (onSave)='saveChanges($event)'></ndv-edit>
+  </div>
+  <div class="col-lg-6">
+    Age <ndv-edit [title]="'age'" [permission]="true" [placeholder]='"20"' (onSave)='saveChanges($event)'></ndv-edit>
+  </div>
 </div>
