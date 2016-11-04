@@ -18,7 +18,7 @@ export class UserComponent {
 
   constructor(
     private userService: UserService,
-    private  notificationService: NotificationsService,
+    private notificationService: NotificationsService,
     private route: ActivatedRoute,
     private router: Router) {
   }

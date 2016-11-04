@@ -1,18 +1,79 @@
+<loader *ngIf="isLoading"></loader>
 <div class="col-md-12">
   <div class="col-md-12 header-profile">
-    <div class="col-md-3">
+    <div class="col-lg-3">
       <img src="assets/img/SB-admin.png" width="150px" class="user-avatar" />
     </div>
-    <div class="col-sm-9 profile-login">
+    <div class="col-lg-8 profile-login">
       <div class="input-login">
-        <ndv-edit [title]="'login'" [permission]="true" [placeholder]='"login"' (onSave)='saveChanges($event)' [min]="3"></ndv-edit>
+        {{user.login}}
       </div>
+    </div>
+    <div class="col-lg-1">
+      <button class="btn btn-success save-profile-button" (click)="saveChanges()">
+        <i class="fa fa-floppy-o" aria-hidden="true"></i>
+        Save
+      </button>
     </div>
   </div>
   <div class="col-lg-6">
-    E-mail <ndv-edit [title]="'email'" [permission]="true" [placeholder]='"email@email.com"' (onSave)='saveChanges($event)'></ndv-edit>
+    E-mail <ndv-edit [title]="'email'" [permission]="true" [placeholder]='user.email' (onSave)='saveEditable($event)'></ndv-edit>
   </div>
   <div class="col-lg-6">
-    Age <ndv-edit [title]="'age'" [permission]="true" [placeholder]='"20"' (onSave)='saveChanges($event)'></ndv-edit>
+    Age <ndv-edit [title]="'age'" [permission]="true" [placeholder]='user.age' (onSave)='saveEditable($event)'></ndv-edit>
+  </div>
+  <div class="col-md-12 additional-info-profile">
+    <div class="card col-md-6">
+      <div class="card-header">
+        Personal information
+      </div>
+      <div class="card-block">
+        <p>
+          <label>
+            First name:
+            <input class="form-control" type="text" [(ngModel)]="user.firstName">
+          </label>
+        </p>
+        <p>
+          <label>
+            Last name:
+            <input class="form-control" type="text" [(ngModel)]="user.lastName">
+          </label>
+        </p>
+        <p>
+          <label>
+            Phone number:
+            <input class="form-control" type="text" [(ngModel)]="user.phone">
+          </label>
+        </p>
+        <p>
+          <label>
+            Skype:
+            <input class="form-control" type="text" [(ngModel)]="user.skype">
+          </label>
+        </p>
+      </div>
+    </div>
+    <div class="card col-md-6">
+      <div class="card card-default">
+        <div class="card-header">
+          <i class="fa fa-briefcase fa-fw"></i> Experience
+        </div>
+        <div class="panel-body">
+          <div class="list-group">
+            <a href="#" class="list-group-item">
+              <i class="fa fa-money fa-fw"></i> Elinext
+            <span class="pull-right text-muted small">
+              <em>3 months</em>
+            </span>
+            </a>
+          </div>
+          <div class="col-sm-8 new-exp-input">
+            <input class="form-control" type="text" placeholder="Company name">
+          </div>
+          <button class="btn btn-primary add-company-button col-sm-4">Add</button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

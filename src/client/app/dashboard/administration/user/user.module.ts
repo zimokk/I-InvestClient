@@ -6,12 +6,14 @@ import { UserService } from "../../../servicies/user.service";
 import { LoaderModule } from "../../../shared/loader/loader.module";
 import { BrowserModule } from '@angular/platform-browser';
 import {SharedModule} from "../../../shared/shared.module";
+import {ConfirmModule, ConfirmOptions, Position} from 'angular2-bootstrap-confirm';
+import {Positioning} from "angular2-bootstrap-confirm/position/index";
 
 @NgModule({
-  imports: [CommonModule, LoaderModule, RouterModule, BrowserModule, SharedModule],
+  imports: [CommonModule, LoaderModule, RouterModule, BrowserModule, SharedModule, ConfirmModule],
   declarations: [UserComponent],
   exports: [UserComponent, RouterModule],
-  providers: [UserService]
+  providers: [UserService, ConfirmOptions,{provide: Position, useClass: Positioning}]
 })
 
 export class UserModule { }
