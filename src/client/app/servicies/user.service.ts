@@ -22,8 +22,12 @@ export class UserService extends HttpService{
     return this.doGet('/all',{});
   }
 
+  getByLogin(user){
+    return this.doPost('/getByLogin',JSON.stringify({user: user}))
+  }
+
   update(user){
-    return this.doPut('/update/'+id,JSON.stringify({user:user}));
+    return this.doPut('/update',JSON.stringify({user:user}));
   }
 
   remove(id: string){
