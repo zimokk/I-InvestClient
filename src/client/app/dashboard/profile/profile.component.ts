@@ -4,6 +4,7 @@ import { NDV_DIRECTIVES } from 'angular2-click-to-edit/components';
 import {UserService} from "../../servicies/user.service";
 import {NotificationsService} from "angular2-notifications/components";
 import {AuthService} from "../../servicies/auth.service";
+import {WorkplaceService} from "../../servicies/workplace.service";
 
 @Component({
   moduleId: module.id,
@@ -16,11 +17,13 @@ export class ProfileComponent {
 
   public user={};
   public isLoading = true;
+  public workplaces = [];
 
   constructor(
     private userService: UserService,
     private notificationService: NotificationsService,
-    private authService: AuthService) {
+    private authService: AuthService,
+    private workplaceService: WorkplaceService) {
 
   }
 
@@ -30,15 +33,21 @@ export class ProfileComponent {
       result => {
         self.user = result.data;
         self.user.id = result.data._id;
-        self.toggleLoader();
+        self.workplaceService.getByUser(self.user.id).then(function (result) {
+          if(result.statusCode == 0){
+            self.workplaces = result.data;
+            self.toggleLoader();
+          }
+        });
       }
     );
   }
 
   saveChanges(){
     let self = this;
+    self.toggleLoader();
     this.userService.update(this.user).then(
-      result => {
+      function(result){
         if(result.data){
           self.authService.setCurrentUser(result.data);
           self.toggleLoader();

@@ -61,11 +61,11 @@
         </div>
         <div class="panel-body">
           <div class="list-group">
-            <a href="#" class="list-group-item">
-              <i class="fa fa-money fa-fw"></i> Elinext
-            <span class="pull-right text-muted small">
-              <em>3 months</em>
-            </span>
+            <a class="list-group-item" *ngFor="let workplace of workplaces">
+              <i class="fa fa-money fa-fw"></i> {{workplace.company}}
+              <span class="pull-right text-muted small">
+                <em>{{workplace.duration}}</em>
+              </span>
             </a>
           </div>
           <div class="col-sm-8 new-exp-input">
