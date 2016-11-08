@@ -10,13 +10,6 @@ export class TimelineComponent { }
 
 @Component({
 	moduleId: module.id,
-	selector: 'chat-cmp',
-	templateUrl: 'chat.html'
-})
-export class ChatComponent {}
-
-@Component({
-	moduleId: module.id,
 	selector: 'notifications-cmp',
 	templateUrl: 'notifications.html'
 })

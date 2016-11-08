@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
 import { CarouselModule, DropdownModule, AlertModule } from 'ng2-bootstrap/ng2-bootstrap';
 
-import { TimelineComponent, ChatComponent, NotificationComponent } from './home.component';
+import { TimelineComponent, NotificationComponent } from './home.component';
+import {ChatComponent} from "../../shared/chat/chat.component";
 
 @NgModule({
     imports: [CommonModule, CarouselModule, DropdownModule, AlertModule],
