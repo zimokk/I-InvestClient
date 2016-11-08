@@ -11,8 +11,8 @@ import { NameListService } from './name-list/index';
       CommonModule,
       RouterModule,
       FormsModule],
-    declarations: [NDV_DIRECTIVES],
-    exports: [CommonModule, FormsModule, RouterModule, NDV_DIRECTIVES]
+    declarations: [NDV_DIRECTIVES ],
+    exports: [CommonModule, FormsModule, RouterModule, NDV_DIRECTIVES ]
 })
 
 export class SharedModule {
