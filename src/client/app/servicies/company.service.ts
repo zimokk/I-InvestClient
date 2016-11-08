@@ -22,6 +22,10 @@ export class CompaniesService extends HttpService {
     return this.doGet('/all',{});
   }
 
+  getByUser(userId){
+    return this.doGet('/getByUser/'+userId,{});
+  }
+
   update(company){
     return this.doPut('/update/'+id,JSON.stringify({company:company}));
   }

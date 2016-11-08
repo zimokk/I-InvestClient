@@ -62,16 +62,23 @@
         <div class="panel-body">
           <div class="list-group">
             <a class="list-group-item" *ngFor="let workplace of workplaces">
-              <i class="fa fa-money fa-fw"></i> {{workplace.company}}
+              <i (click)="deleteWorkplace(workplace)" class="fa fa-remove fa-fw"></i> {{workplace.company}}
               <span class="pull-right text-muted small">
                 <em>{{workplace.duration}}</em>
               </span>
             </a>
           </div>
-          <div class="col-sm-8 new-exp-input">
-            <input class="form-control" type="text" placeholder="Company name">
+          <div class="row card-footer">
+            <div class="col-sm-5 new-exp-input">
+              <input [(ngModel)]="company" class="form-control" type="text" placeholder="Company name">
+            </div>
+            <div class="col-sm-5 new-exp-input">
+              <input [(ngModel)]="duration"  class="form-control" type="text" placeholder="Duration">
+            </div>
+            <button (click)="addWorkplace()" class="btn btn-primary add-company-button col-sm-2">
+              <i class="fa fa-plus-square-o"></i>
+            </button>
           </div>
-          <button class="btn btn-primary add-company-button col-sm-4">Add</button>
         </div>
       </div>
     </div>

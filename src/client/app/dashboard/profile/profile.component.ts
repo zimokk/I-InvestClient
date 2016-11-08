@@ -64,6 +64,37 @@ export class ProfileComponent {
     }
   }
 
+  addWorkplace(){
+    let self = this;
+    self.toggleLoader();
+    let newWorkplace = {
+      company : self.company,
+      duration : self.duration,
+      userId: self.user.id
+    };
+    self.workplaceService.add(newWorkplace).then(function (result) {
+      if(result.statusCode == 0){
+        self.workplaces.push(result.data);
+        self.company = "";
+        self.duration = "";
+        self.toggleLoader();
+      }
+    }, function (error) {
+      console.log(error);
+    });
+  }
+
+  deleteWorkplace(workplace){
+    let self = this;
+    self.toggleLoader();
+    this.workplaceService.remove(workplace._id).then(function (result) {
+      if(result.statusCode == 0){
+        self.workplaces.splice(self.workplaces.indexOf(workplace), 1);
+        self.toggleLoader();
+      }
+    });
+  }
+
   private toggleLoader(): void{
     let self = this;
     if(!this.isLoading){
