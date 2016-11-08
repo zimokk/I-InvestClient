@@ -60,7 +60,7 @@
           <i class="fa fa-briefcase fa-fw"></i> Experience
         </div>
         <div class="panel-body">
-          <div class="list-group">
+          <div class="list-group workplaces-list">
             <a class="list-group-item" *ngFor="let workplace of workplaces">
               <i (click)="deleteWorkplace(workplace)" class="fa fa-remove fa-fw"></i> {{workplace.company}}
               <span class="pull-right text-muted small">
@@ -79,6 +79,62 @@
               <i class="fa fa-plus-square-o"></i>
             </button>
           </div>
+        </div>
+      </div>
+      <ng-select [items]="users"
+                 (selected)="selected($event)"
+                 placeholder="No user selected">
+      </ng-select>
+    </div>
+  </div>
+  <div class="col-md-6 messages-box" *ngIf="sentMessages.length">
+    <h3>
+      Sent messages
+    </h3>
+    <div class="messages-list">
+      <div class="card card-primary card-inverse" *ngFor="let sentItem of sentMessages">
+        <div class="card-header card-primary">
+          <div class="row">
+            <div class="col-xs-6 text-xs-left">
+              <div>{{sentItem.receiverLogin}}</div>
+            </div>
+            <div class="col-xs-5 text-xs-right">
+              <div>{{sentItem.title}}</div>
+            </div>
+            <div class="col-xs-1">
+              <i class="fa fa-remove fa-fw" (click)="removeMessage(sentItem)"></i>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer card-default">
+          <span class="pull-xs-left message-text">{{sentItem.text}}</span>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 messages-box" *ngIf="inbox.length">
+    <h3>
+      Inbox
+    </h3>
+    <div class="messages-list">
+      <div class="card card-primary card-inverse" *ngFor="let inboxItem of inbox">
+        <div class="card-header card-primary">
+          <div class="row">
+            <div class="col-xs-6 text-xs-left">
+              <div>{{inboxItem.authorLogin}}</div>
+            </div>
+            <div class="col-xs-5 text-xs-right">
+              <div>{{inboxItem.title}}</div>
+            </div>
+            <div class="col-xs-1">
+              <i class="fa fa-remove fa-fw" (click)="removeMessage(inboxItem)"></i>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer card-default">
+          <span class="pull-xs-left message-text">{{inboxItem.text}}</span>
+          <div class="clearfix"></div>
         </div>
       </div>
     </div>

@@ -5,12 +5,14 @@ import {UserService} from "../../servicies/user.service";
 import {NotificationsService} from "angular2-notifications/components";
 import {AuthService} from "../../servicies/auth.service";
 import {WorkplaceService} from "../../servicies/workplace.service";
+import {MessagesService} from "../../servicies/message.service";
+import {SelectComponent} from "ng2-select/ng2-select";
 
 @Component({
   moduleId: module.id,
   selector: 'profile-cmp',
   templateUrl: 'profile.component.html',
-  directives: [LoaderComponent, NDV_DIRECTIVES]
+  directives: [LoaderComponent, NDV_DIRECTIVES, SelectComponent]
 })
 
 export class ProfileComponent {
@@ -18,12 +20,17 @@ export class ProfileComponent {
   public user={};
   public isLoading = true;
   public workplaces = [];
+  public sentMessages = [];
+  public inbox = [];
+  public pageNumberSent:number = 2;
+  public users = ['1','2'];
 
   constructor(
     private userService: UserService,
     private notificationService: NotificationsService,
     private authService: AuthService,
-    private workplaceService: WorkplaceService) {
+    private workplaceService: WorkplaceService,
+    private messagesService: MessagesService) {
 
   }
 
@@ -36,6 +43,16 @@ export class ProfileComponent {
         self.workplaceService.getByUser(self.user.id).then(function (result) {
           if(result.statusCode == 0){
             self.workplaces = result.data;
+          }
+        });
+        self.messagesService.getByAuthor(self.user.id).then(function (result) {
+          if(result.statusCode == 0){
+            self.sentMessages = result.data;
+          }
+        });
+        self.messagesService.getByReceiver(self.user.id).then(function (result) {
+          if(result.statusCode == 0){
+            self.inbox = result.data;
             self.toggleLoader();
           }
         });
@@ -93,6 +110,26 @@ export class ProfileComponent {
         self.toggleLoader();
       }
     });
+  }
+
+  removeMessage(message):void{
+    let self = this;
+    self.toggleLoader();
+    self.messagesService.remove(message._id).then(function (result) {
+      if(result.statusCode == 0){
+        let inboxIndex = self.inbox.indexOf(message);
+        if(inboxIndex != -1){
+          self.inbox.splice(inboxIndex, 1)
+        } else{
+          self.sentMessages.splice(self.sentMessages.indexOf(message), 1)
+        }
+        self.toggleLoader();
+      }
+    });
+  }
+
+  selected(event){
+    console.log(event);
   }
 
   private toggleLoader(): void{

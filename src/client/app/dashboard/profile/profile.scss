@@ -34,3 +34,28 @@ button.add-company-button{
 button.save-profile-button{
   border-radius: 0;
 }
+span.message-text{
+  color: black;
+}
+div.messages-box{
+  padding: 5px;
+  div.messages-list{
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 320px;
+    max-height: 320px;
+  }
+}
+div.messages-list{
+  i{
+    cursor: pointer;
+    &:hover{
+      color: rgba(211, 211, 211, 0.38);
+    }
+  }
+}
+div.workplaces-list{
+  height: 250px;
+  max-height: 250px;
+  overflow-y: auto;
+}
