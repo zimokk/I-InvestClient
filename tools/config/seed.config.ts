@@ -340,6 +340,7 @@ export class SeedConfig {
       '@angular/router/testing': 'node_modules/@angular/router/bundles/router-testing.umd.js',
 
       'angular2-click-to-edit': 'node_modules/angular2-click-to-edit',
+      'ng2-select': 'node_modules/ng2-select',
 
       'rxjs/*': 'node_modules/rxjs/*',
       'app/*': '/app/*',
@@ -349,7 +350,11 @@ export class SeedConfig {
     },
     packages: {
       rxjs: { defaultExtension: 'js' },
-      'angular2-click-to-edit': { main: 'index' }
+      'angular2-click-to-edit': { main: 'index' },
+      'ng2-select': {
+        defaultExtension: 'js',
+        main: 'ng2-select.js'
+      }
     }
   };
 
