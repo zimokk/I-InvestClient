@@ -1,5 +1,6 @@
 import { Component,Input } from '@angular/core';
 import {AuthService} from "../../servicies/auth.service";
+import {MessagesService} from "../../servicies/message.service";
 
 @Component({
     moduleId: module.id,
@@ -9,8 +10,18 @@ import {AuthService} from "../../servicies/auth.service";
 
 export class TopNavComponent {
   @Input() currentUser;
+  public messages = [];
 
-  constructor(private authService: AuthService){
+  constructor(private authService: AuthService, private messageService: MessagesService){
+  }
+
+  ngOnInit(){
+    let self = this;
+    self.messageService.getByReceiverLogin(self.currentUser.login).then(function (result) {
+      if(result.statusCode == 0){
+        self.messages = result.data;
+      }
+    });
   }
 
   logout():void{

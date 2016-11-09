@@ -30,6 +30,10 @@ export class MessagesService extends HttpService {
     return this.doGet('/getByReceiver/'+receiverId,{});
   }
 
+  getByReceiverLogin(receiverLogin: string){
+    return this.doPost('/getByReceiverLogin',{receiverLogin: receiverLogin});
+  }
+
   update(message){
     return this.doPut('/update/'+message._id,JSON.stringify({message:message}));
   }

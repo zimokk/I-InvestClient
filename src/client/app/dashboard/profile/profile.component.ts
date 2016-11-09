@@ -165,7 +165,8 @@ export class ProfileComponent {
         self.toggleLoader();
       })
     } else{
-      self.notificationService.alert("Error","Please, fill in message data")
+      self.notificationService.alert("Error","Please, fill in message data");
+      self.toggleLoader();
     }
   }
 
