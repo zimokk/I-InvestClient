@@ -55,7 +55,29 @@ div.messages-list{
   }
 }
 div.workplaces-list{
-  height: 250px;
-  max-height: 250px;
+  height: 314px;
+  max-height: 314px;
   overflow-y: auto;
+}
+div.additional-info-part{
+  height: 420px;
+}
+div.send-message-form{
+  height: 60px;
+  max-height: 60px;
+}
+div.user-selector-block{
+  padding-top: 10px;
+}
+div.send-button-block{
+  padding-top: 10px;
+}
+textarea.message-textarea{
+  max-height: 60px;
+}
+div.message-title-block{
+  padding-top: 10px;
+}
+div.delete-message-button{
+  padding: 0;
 }

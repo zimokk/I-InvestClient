@@ -23,7 +23,9 @@ export class ProfileComponent {
   public sentMessages = [];
   public inbox = [];
   public pageNumberSent:number = 2;
-  public users = ['1','2'];
+  private users = ['1','2'];
+  public userLogins = [];
+  public selectedReceiver;
 
   constructor(
     private userService: UserService,
@@ -31,11 +33,21 @@ export class ProfileComponent {
     private authService: AuthService,
     private workplaceService: WorkplaceService,
     private messagesService: MessagesService) {
-
   }
 
   ngOnInit(){
     let self = this;
+    this.userService.getAll().then(function (result) {
+      if(result.statusCode == 0){
+        self.users = result.data;
+        self.userLogins = result.data.map(function (user) {
+          return {
+            text: user.login,
+            id: user._id
+          }
+        });
+      }
+    });
     this.userService.getByLogin(this.authService.getCurrentUser()).then(
       result => {
         self.user = result.data;
@@ -67,6 +79,7 @@ export class ProfileComponent {
       function(result){
         if(result.data){
           self.authService.setCurrentUser(result.data);
+          self.notificationService.success("Success", "Changes saved");
           self.toggleLoader();
         }
       }
@@ -92,6 +105,7 @@ export class ProfileComponent {
     self.workplaceService.add(newWorkplace).then(function (result) {
       if(result.statusCode == 0){
         self.workplaces.push(result.data);
+        self.notificationService.success("Success", "Workplace added");
         self.company = "";
         self.duration = "";
         self.toggleLoader();
@@ -107,6 +121,7 @@ export class ProfileComponent {
     this.workplaceService.remove(workplace._id).then(function (result) {
       if(result.statusCode == 0){
         self.workplaces.splice(self.workplaces.indexOf(workplace), 1);
+        self.notificationService.success("Success", "Workplace deleted");
         self.toggleLoader();
       }
     });
@@ -123,13 +138,35 @@ export class ProfileComponent {
         } else{
           self.sentMessages.splice(self.sentMessages.indexOf(message), 1)
         }
+        self.notificationService.success("Success", "Message deleted");
         self.toggleLoader();
       }
     });
   }
 
   selected(event){
-    console.log(event);
+    this.selectedReceiver = event;
+  }
+
+  sendMessage(){
+    let self = this;
+    self.toggleLoader();
+    if(self.messageText && self.selectedReceiver && self.messageTitle){
+      self.messagesService.addMessage({
+        title: self.messageTitle,
+        text: self.messageText,
+        authorId: self.user._id,
+        receiverId: self.selectedReceiver.id
+      }).then(function (result) {
+        if(result.statusCode == 0){
+          self.sentMessages.push(result.data);
+          self.notificationService.success("Success", "Message sent");
+        }
+        self.toggleLoader();
+      })
+    } else{
+      self.notificationService.alert("Error","Please, fill in message data")
+    }
   }
 
   private toggleLoader(): void{

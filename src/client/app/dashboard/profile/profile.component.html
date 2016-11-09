@@ -23,7 +23,7 @@
     Age <ndv-edit [title]="'age'" [permission]="true" [placeholder]='user.age' (onSave)='saveEditable($event)'></ndv-edit>
   </div>
   <div class="col-md-12 additional-info-profile">
-    <div class="card col-md-6">
+    <div class="card col-md-6 additional-info-part">
       <div class="card-header">
         Personal information
       </div>
@@ -54,7 +54,7 @@
         </p>
       </div>
     </div>
-    <div class="card col-md-6">
+    <div class="card col-md-6 additional-info-part">
       <div class="card card-default">
         <div class="card-header">
           <i class="fa fa-briefcase fa-fw"></i> Experience
@@ -81,10 +81,6 @@
           </div>
         </div>
       </div>
-      <ng-select [items]="users"
-                 (selected)="selected($event)"
-                 placeholder="No user selected">
-      </ng-select>
     </div>
   </div>
   <div class="col-md-6 messages-box" *ngIf="sentMessages.length">
@@ -99,9 +95,13 @@
               <div>{{sentItem.receiverLogin}}</div>
             </div>
             <div class="col-xs-5 text-xs-right">
-              <div>{{sentItem.title}}</div>
+              <div>
+                <b>
+                  {{sentItem.title}}
+                </b>
+              </div>
             </div>
-            <div class="col-xs-1">
+            <div class="col-xs-1 delete-message-button">
               <i class="fa fa-remove fa-fw" (click)="removeMessage(sentItem)"></i>
             </div>
           </div>
@@ -125,9 +125,13 @@
               <div>{{inboxItem.authorLogin}}</div>
             </div>
             <div class="col-xs-5 text-xs-right">
-              <div>{{inboxItem.title}}</div>
+              <div>
+                <b>
+                  {{inboxItem.title}}
+                </b>
+              </div>
             </div>
-            <div class="col-xs-1">
+            <div class="col-xs-1 delete-message">
               <i class="fa fa-remove fa-fw" (click)="removeMessage(inboxItem)"></i>
             </div>
           </div>
@@ -137,6 +141,25 @@
           <div class="clearfix"></div>
         </div>
       </div>
+    </div>
+  </div>
+  <div class="col-md-12 send-message-form">
+    <div class="col-sm-2 message-title-block">
+      <input [(ngModel)]="messageTitle" placeholder="Title" class="form-control" type="text">
+    </div>
+    <div class="col-sm-5">
+      <textarea [(ngModel)]="messageText" class="form-control message-textarea" placeholder="Type your message here..."></textarea>
+    </div>
+    <div class="col-sm-4 user-selector-block">
+      <ng-select [items]="userLogins"
+        (selected)="selected($event)"
+        placeholder="No user selected">
+      </ng-select>
+    </div>
+    <div class="col-sm-1 send-button-block">
+      <button (click)="sendMessage()" class="btn btn-primary">
+        Send
+      </button>
     </div>
   </div>
 </div>
