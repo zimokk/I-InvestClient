@@ -1,24 +1,41 @@
 <loader *ngIf="isLoading"></loader>
 <div class="row"> <!--*ngIf="!isLoading"-->
   <div class="col-xl-12 col-lg-12">
-    <h4>Basic example</h4>
-    <div class="card card-block">
-      <div class="card col-md-6 col-lg-4 company-tile" *ngFor="let company of companies">
-        <div class="card-header card-default">
-          {{company.name}}
-        </div>
-        <div class="card-block">
-          State: {{company.state}}
-          Budget: {{company.budget}}
-          <span class="id-span">id: {{company._id}}</span>
-        </div>
-        <div class="card-footer card-default">
-          <a [routerLink]="['company/:id', {id: company._id}]">
-            <span class="pull-xs-left">View Details</span>
-            <span class="pull-xs-right"><i class="fa fa-arrow-circle-right"></i></span>
-            <span class="pull-xs-right year-span">{{company.foundation}}</span>
-            <div class="clearfix"></div>
-          </a>
+    <div class="col-sm-12">
+      <span class="pull-left">Basic example</span>
+      <span class="pull-right">
+        <button class="btn btn-success" [routerLink]="['new']">
+          Create
+        </button>
+      </span>
+    </div>
+    <div>
+      <div class=" col-md-6 col-lg-4" *ngFor="let company of companies">
+        <div class="card company-tile">
+          <div class="card-header card-default">
+            {{company.name}}
+          </div>
+          <div class="card-block">
+          <span>
+            <h2>
+              State: {{company.state}}
+            </h2>
+          </span>
+            <div class="card-footer">
+            <span>
+              <i class="fa fa-usd"></i>
+              {{company.budget}}
+            </span>
+            </div>
+          </div>
+          <div class="card-footer card-default">
+            <a [routerLink]="['company/:id', {id: company._id}]">
+              <span class="pull-xs-left">View Details</span>
+              <span class="pull-xs-right"><i class="fa fa-arrow-circle-right"></i></span>
+              <span class="pull-xs-right year-span">{{company.foundation}}</span>
+              <div class="clearfix"></div>
+            </a>
+          </div>
         </div>
       </div>
     </div>
