@@ -15,6 +15,7 @@ import { DashboardComponent } from './index';
 import {AdministrationRoutes} from "./administration/administration.routes";
 import {CompaniesRoutes} from "./companies/companies.routes";
 import {ProfileRoutes} from "./profile/profile.routes";
+import {ActionsRoutes} from "./actions/actions.routes";
 
 export const DashboardRoutes: Route[] = [
   	{
@@ -31,7 +32,8 @@ export const DashboardRoutes: Route[] = [
         ...BSElementRoutes,
         ...AdministrationRoutes,
         ...CompaniesRoutes,
-        ...ProfileRoutes
+        ...ProfileRoutes,
+        ...ActionsRoutes
     	],
       data: {roles:['user']},
       canActivate: [AuthService] //add required roles

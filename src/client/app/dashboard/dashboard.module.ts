@@ -23,6 +23,7 @@ import {AdministrationModule} from "./administration/administration.module";
 import {LoaderModule} from "../shared/loader/loader.module";
 import {CompaniesModule} from "./companies/companies.module";
 import {ProfileModule} from "./profile/profile.module";
+import {ActionsModule} from "./actions/actions.module";
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import {ProfileModule} from "./profile/profile.module";
       AdministrationModule,
       ProfileModule,
       LoaderModule,
-      CompaniesModule
+      CompaniesModule,
+      ActionsModule
     ],
     declarations: [DashboardComponent, TopNavComponent, SidebarComponent],
     exports: [DashboardComponent, TopNavComponent, SidebarComponent],
