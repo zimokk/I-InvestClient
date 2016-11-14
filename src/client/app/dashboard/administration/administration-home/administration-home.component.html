@@ -6,47 +6,47 @@
       <div class="table-responsive">
         <table class="table table-hover table-striped">
           <thead>
-          <tr>
-            <th>id</th>
-            <th>Login</th>
-            <th>Email</th>
-            <th>Age</th>
-            <th>Sex</th>
-            <th>Action</th>
-            <th>Ban</th>
-          </tr>
+            <tr>
+              <th>id</th>
+              <th>Login</th>
+              <th>Email</th>
+              <th>Age</th>
+              <th>Sex</th>
+              <th>Action</th>
+              <th>Ban</th>
+            </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let user of users | paginate: { itemsPerPage: 9, currentPage: pageNumber }">
-            <th>{{user._id}}</th>
-            <td>{{user.login}}</td>
-            <td>{{user.email}}</td>
-            <td>{{user.age}}</td>
-            <td>{{user.sex}}</td>
-            <td class="actions-column">
-              <button class="btn btn-sm btn-info" [routerLink]="['user/:id', {id: user._id}]" >
-                <i class="fa fa-info" aria-hidden="true"></i>
-              </button>
-              <button class="btn btn-sm btn-danger"
-                      mwlConfirm
-                      [title]="'Confirm removing'"
-                      [message]="'Are you sure?'"
-                      placement="left"
-                      (confirm)="removeUser(user)"
-                      [(isOpen)]="user.isOpen">
-                <i class="fa fa-ban"></i>
-              </button>
-            </td>
-            <td>
-              <input type="button" class="btn btn-sm"
-                     *ngIf="user.role != 'admin'"
-                     [ngClass]="{
-                          'btn-danger':!user.isBanned,
-                          'btn-success':user.isBanned}"
-                     value="{{user.isBanned ? 'Enable' : 'Ban'}}"
-                     (click)="toggleBan(user)">
-            </td>
-          </tr>
+            <tr *ngFor="let user of users | paginate: { itemsPerPage: 9, currentPage: pageNumber }">
+              <th>{{user._id}}</th>
+              <td>{{user.login}}</td>
+              <td>{{user.email}}</td>
+              <td>{{user.age}}</td>
+              <td>{{user.sex}}</td>
+              <td class="actions-column">
+                <button class="btn btn-sm btn-info" [routerLink]="['user/:id', {id: user._id}]" >
+                  <i class="fa fa-info" aria-hidden="true"></i>
+                </button>
+                <button class="btn btn-sm btn-danger"
+                        mwlConfirm
+                        [title]="'Confirm removing'"
+                        [message]="'Are you sure?'"
+                        placement="left"
+                        (confirm)="removeUser(user)"
+                        [(isOpen)]="user.isOpen">
+                  <i class="fa fa-ban"></i>
+                </button>
+              </td>
+              <td>
+                <input type="button" class="btn btn-sm"
+                       *ngIf="user.role != 'admin'"
+                       [ngClass]="{
+                            'btn-danger':!user.isBanned,
+                            'btn-success':user.isBanned}"
+                       value="{{user.isBanned ? 'Enable' : 'Ban'}}"
+                       (click)="toggleBan(user)">
+              </td>
+            </tr>
           </tbody>
         </table>
         <div class="pull-right">
