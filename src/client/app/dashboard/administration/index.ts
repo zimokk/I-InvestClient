@@ -1,2 +1,2 @@
-export * from './administration.component';
+export * from './administration.module';
 export * from './administration.routes';
