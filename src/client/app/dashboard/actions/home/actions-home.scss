@@ -1,0 +1,14 @@
+.action-name-column{
+  width: 75%;
+  cursor: pointer;
+}
+.chosen-actions-list{
+  overflow-y: auto;
+  max-height: 350px;
+}
+.chosen-action-row{
+  width: 80%;
+}
+.chosen-action-row-delete{
+  width: 20%;
+}

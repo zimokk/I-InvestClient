@@ -10,16 +10,40 @@ import {ActionsService} from "../../../servicies/action.service";
 
 export class ActionsHomeComponent {
   public actions = [];
+  public chosenActions = [];
   public isLoading = true;
+  public isDataRefreshing = false;
 
   constructor(private  notificationService: NotificationsService, private actionsService: ActionsService) {
   }
 
   ngOnInit(){
-    
+    this.getActions();
   }
 
-  private toggleLoader(): void{
+  public selectAction(action):void{
+    if(this.chosenActions.indexOf(action) == -1){
+      this.chosenActions.push(action);
+    }
+  }
+
+  public deselectAction(action):void{
+    this.chosenActions.splice(this.chosenActions.indexOf(action), 1);
+  }
+
+  private getActions(): void {
+    let self = this;
+    self.actionsService.getAll().then(function (result) {
+      if(result.statusCode == 0){
+        self.actions = result.data;
+      } else{
+        self.notificationService.error("Error", "An error querying actions list");
+      }
+      self.toggleLoader();
+    })
+  }
+
+  private toggleLoader(): void {
     let self = this;
     if(!this.isLoading){
       self.isLoading = true;
