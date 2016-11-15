@@ -14,6 +14,10 @@ export class ActionsService extends HttpService {
     return this.doPost('/new',JSON.stringify({action: action}));
   }
 
+  findByName(nameContains: string){
+    return this.doPost('/findByName',JSON.stringify({nameContains: nameContains}));
+  }
+
   get(id: string){
     return this.doGet('/get/'+id,{});
   }

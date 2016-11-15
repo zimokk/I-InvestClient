@@ -12,7 +12,7 @@ export class ActionsHomeComponent {
   public actions = [];
   public chosenActions = [];
   public isLoading = true;
-  public isDataRefreshing = false;
+  public isActionsDataRefreshing = false;
 
   constructor(private  notificationService: NotificationsService, private actionsService: ActionsService) {
   }
@@ -29,6 +29,21 @@ export class ActionsHomeComponent {
 
   public deselectAction(action):void{
     this.chosenActions.splice(this.chosenActions.indexOf(action), 1);
+  }
+
+  public findActionByName(nameContains):void{
+    let self = this;
+    self.isActionsDataRefreshing = true;
+    this.actionsService.findByName(nameContains).then(function (result) {
+      if(result.statusCode == 0){
+        self.actions = result.data;
+        setTimeout(function () {
+          self.isActionsDataRefreshing = false;
+        }, 1000);
+      } else{
+        self.notificationService.error("Error", "An error querying actions list");
+      }
+    })
   }
 
   private getActions(): void {
