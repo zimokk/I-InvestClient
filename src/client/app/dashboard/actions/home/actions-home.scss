@@ -4,10 +4,12 @@
 }
 .chosen-actions-list{
   overflow-y: auto;
+  height: 350px;
   max-height: 350px;
 }
 .chosen-action-row{
   width: 80%;
+  cursor: pointer;
 }
 .chosen-action-row-delete{
   width: 20%;

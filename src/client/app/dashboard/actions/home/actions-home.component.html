@@ -48,7 +48,7 @@
           <table class="table table-hover table-striped">
             <tbody>
               <tr *ngFor="let action of chosenActions" class="chosen-action-row">
-                <td>{{action.name}}</td>
+                <td (click)="setCurrentlyChosen(action)">{{action.name}}</td>
                 <td class="chosen-action-row-delete">
                   <button class="btn-sm btn-danger" (click)="deselectAction(action)" >
                     <i class="fa fa-remove"></i>
@@ -60,6 +60,19 @@
         </div>
       </div>
     </div>
+    <div class="col-sm-12" *ngIf="currentlyChosenAction">
+      <div class="col-sm-3">
+        Current:
+      </div>
+      <div class="col-sm-5">
+        {{currentlyChosenAction.name}}
+      </div>
+      <div class="col-sm-4">
+        <button class="btn btn-danger" (click)="setCurrentlyChosen(null)">
+          Clear <i class="fa fa-remove"></i>
+        </button>
+      </div>
+    </div>
   </div>
   <div class="col-md-12">
     <div class="col-md-3">
@@ -69,7 +82,7 @@
       Worst
     </div>
     <div class="col-md-6">
-      Chosen graph
+      <nvd3 [options]="options" [data]="data"></nvd3>
     </div>
   </div>
   <div class="col-md-12">

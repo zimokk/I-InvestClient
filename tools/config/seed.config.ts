@@ -341,6 +341,9 @@ export class SeedConfig {
 
       'angular2-click-to-edit': 'node_modules/angular2-click-to-edit',
       'ng2-select': 'node_modules/ng2-select',
+      'd3': 'node_modules/d3/d3.js',
+      'nv' : 'node_modules/nvd3/build/nv.d3.js',
+      'ng2-nvd3': 'node_modules/ng2-nvd3/build/lib',
 
       'rxjs/*': 'node_modules/rxjs/*',
       'app/*': '/app/*',
@@ -354,7 +357,10 @@ export class SeedConfig {
       'ng2-select': {
         defaultExtension: 'js',
         main: 'ng2-select.js'
-      }
+      },
+      d3: { defaultExtension: 'js' },
+      nv: { defaultExtension: 'js' },
+      'ng2-nvd3': { main: 'ng2-nvd3.js',  defaultExtension: 'js'  }
     }
   };
 
