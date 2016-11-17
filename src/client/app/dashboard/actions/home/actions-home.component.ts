@@ -24,72 +24,90 @@ export class ActionsHomeComponent {
   constructor(private  notificationService: NotificationsService, private actionsService: ActionsService) {
   }
 
+  private stream_layers(n, m, o) {
+    let self = this;
+    if (arguments.length < 3) o = 0;
+    function bump(a) {
+      var x = 1 / (.1 + Math.random()),
+        y = 2 * Math.random() - .5,
+        z = 10 / (.1 + Math.random());
+      for (var i = 0; i < m; i++) {
+        var w = (i / m - y) * z;
+        a[i] += x * Math.exp(-w * w);
+      }
+    }
+  return d3.range(n).map(function() {
+      var a = [], i;
+      for (i = 0; i < m; i++) a[i] = o + o * Math.random();
+      for (i = 0; i < 5; i++) bump(a);
+      return a.map(self.stream_index);
+    });
+  }
+
+  /* Another layer generator using gamma distributions. */
+  private stream_waves(n, m) {
+    let self = this;
+    return d3.range(n).map(function(i) {
+      return d3.range(m).map(function(j) {
+        var x = 20 * j / m - i / 3;
+        return 2 * x * Math.exp(-.5 * x);
+      }).map(self.stream_index);
+    });
+  }
+
+  private stream_index(d, i) {
+    return {x: i, y: Math.max(0, d)};
+  }
+
+  private generateData() {
+    return this.stream_layers(3,10+Math.random()*200,.1).map(function(data, i) {
+      return {
+        key: 'Stream' + i,
+        values: data
+      };
+    });
+  }
+
   ngOnInit(){
     this.options = {
       chart: {
-        type: 'discreteBarChart',
+        type: 'lineWithFocusChart',
         height: 450,
         margin : {
           top: 20,
           right: 20,
-          bottom: 50,
-          left: 55
+          bottom: 60,
+          left: 40
         },
-        x: function(d){return d.label;},
-        y: function(d){return d.value;},
-        showValues: true,
-        valueFormat: function(d){
-          return d3.format(',.4f')(d);
-        },
-        duration: 500,
+        duration: 50,
         xAxis: {
-          axisLabel: 'X Axis'
+          axisLabel: 'X Axis',
+          tickFormat: function(d){
+            return d3.format(',f')(d);
+          }
+        },
+        x2Axis: {
+          tickFormat: function(d){
+            return d3.format(',f')(d);
+          }
         },
         yAxis: {
           axisLabel: 'Y Axis',
-          axisLabelDistance: -10
-        }
-      }
-    }
-    this.data = [
-      {
-        key: "Cumulative Return",
-        values: [
-          {
-            "label" : "A" ,
-            "value" : -29.765957771107
-          } ,
-          {
-            "label" : "B" ,
-            "value" : 0
-          } ,
-          {
-            "label" : "C" ,
-            "value" : 32.807804682612
-          } ,
-          {
-            "label" : "D" ,
-            "value" : 196.45946739256
-          } ,
-          {
-            "label" : "E" ,
-            "value" : 0.19434030906893
-          } ,
-          {
-            "label" : "F" ,
-            "value" : -98.079782601442
-          } ,
-          {
-            "label" : "G" ,
-            "value" : -13.925743130903
-          } ,
-          {
-            "label" : "H" ,
-            "value" : -5.1387322875705
+          tickFormat: function(d){
+            return d3.format(',.2f')(d);
+          },
+          rotateYLabel: false
+        },
+        y2Axis: {
+          tickFormat: function(d){
+            return d3.format(',.2f')(d);
           }
-        ]
+        }
+
       }
-    ];
+    };
+
+    this.data = this.generateData();
     this.getActions();
   }
 

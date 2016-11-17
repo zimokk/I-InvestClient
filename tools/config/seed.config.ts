@@ -286,6 +286,7 @@ export class SeedConfig {
    * @type {InjectableDependency[]}
    */
   APP_ASSETS: InjectableDependency[] = [
+    { src: `node_modules/nvd3/build/nv.d3.css`, inject: true, vendor: false},
     // { src: `${this.CSS_SRC}/main.${this.getInjectableStyleExtension()}`, inject: true, vendor: false },
   ];
 
