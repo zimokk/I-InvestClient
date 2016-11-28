@@ -24,50 +24,6 @@ export class ActionsHomeComponent {
   constructor(private  notificationService: NotificationsService, private actionsService: ActionsService) {
   }
 
-  private stream_layers(n, m, o) {
-    let self = this;
-    if (arguments.length < 3) o = 0;
-    function bump(a) {
-      var x = 1 / (.1 + Math.random()),
-        y = 2 * Math.random() - .5,
-        z = 10 / (.1 + Math.random());
-      for (var i = 0; i < m; i++) {
-        var w = (i / m - y) * z;
-        a[i] += x * Math.exp(-w * w);
-      }
-    }
-  return d3.range(n).map(function() {
-      var a = [], i;
-      for (i = 0; i < m; i++) a[i] = o + o * Math.random();
-      for (i = 0; i < 5; i++) bump(a);
-      return a.map(self.stream_index);
-    });
-  }
-
-  /* Another layer generator using gamma distributions. */
-  private stream_waves(n, m) {
-    let self = this;
-    return d3.range(n).map(function(i) {
-      return d3.range(m).map(function(j) {
-        var x = 20 * j / m - i / 3;
-        return 2 * x * Math.exp(-.5 * x);
-      }).map(self.stream_index);
-    });
-  }
-
-  private stream_index(d, i) {
-    return {x: i, y: Math.max(0, d)};
-  }
-
-  private generateData() {
-    return this.stream_layers(3,10+Math.random()*200,.1).map(function(data, i) {
-      return {
-        key: 'Stream' + i,
-        values: data
-      };
-    });
-  }
-
   ngOnInit(){
     this.options = {
       chart: {
@@ -106,8 +62,6 @@ export class ActionsHomeComponent {
 
       }
     };
-
-    this.data = this.generateData();
     this.getActions();
   }
 
@@ -119,7 +73,39 @@ export class ActionsHomeComponent {
   }
 
   public setCurrentlyChosen(action):void{
-    this.currentlyChosenAction = action;
+    if(action){
+      let self = this;
+      self.isCurrentlyChoselLoading = true;
+      this.actionsService.get(action._id).then(function (result) {
+
+        if(result.statusCode == 0){
+          self.currentlyChosenAction = result.data;
+          let valuesArray = [];
+          let i = 0;
+
+          result.data.prices.forEach(function (price) {
+            valuesArray.push({
+              series: 0,
+              y: price.close,
+              x: i++
+            })
+          });
+
+          self.currentlyChosenActionPriceArray = [{
+            key: result.data.name,
+            values : valuesArray
+          }];
+
+          setTimeout(function () {
+            self.isCurrentlyChoselLoading = false;
+          }, 1000);
+          
+        }
+      });
+      this.currentlyChosenAction = action;
+    } else{
+      this.currentlyChosenAction = action;
+    }
   }
 
   public deselectAction(action):void{

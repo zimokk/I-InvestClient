@@ -83,7 +83,8 @@
     </div>
       <div class="col-md-6">
         <div>
-          <nvd3 [options]="options" [data]="data"></nvd3>
+          <bounce-loader *ngIf="isCurrentlyChoselLoading"></bounce-loader>
+          <nvd3 ng-if="currentlyChosenActionPriceArray.values.length" [options]="options" [data]="currentlyChosenActionPriceArray" [hidden]="!currentlyChosenAction"></nvd3>
         </div>
     </div>
   </div>
