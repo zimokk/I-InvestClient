@@ -29,4 +29,12 @@ export class ActionsService extends HttpService {
   remove(id: string){
     return this.doDelete('/delete/'+id,{});
   }
+
+  getTop(){
+    return this.doGet('/getTop',{});
+  }
+
+  getBottom(){
+    return this.doGet('/getBottom',{});
+  }
 }
