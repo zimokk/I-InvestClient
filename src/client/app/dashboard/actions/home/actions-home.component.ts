@@ -17,9 +17,13 @@ export class ActionsHomeComponent {
   public chosenActions = [];
   public isLoading = true;
   public isActionsDataRefreshing = false;
+  public isTopActionsDataLoading = false;
+  public isBottomActionsDataLoading = false;
 
   public options;
   public data;
+  public bottomActions = [];
+  public topActions = [];
 
   constructor(private  notificationService: NotificationsService, private actionsService: ActionsService) {
   }
@@ -63,6 +67,8 @@ export class ActionsHomeComponent {
       }
     };
     this.getActions();
+    this.getTopActions();
+    this.getBottomActions();
   }
 
   public selectAction(action):void{
@@ -99,7 +105,7 @@ export class ActionsHomeComponent {
           setTimeout(function () {
             self.isCurrentlyChoselLoading = false;
           }, 1000);
-          
+
         }
       });
       this.currentlyChosenAction = action;
@@ -135,7 +141,37 @@ export class ActionsHomeComponent {
       } else{
         self.notificationService.error("Error", "An error querying actions list");
       }
-      self.toggleLoader();
+      self.toggleLoader(self.isLoading);
+    })
+  }
+
+  private getTopActions(): void {
+    let self = this;
+    self.isTopActionsDataLoading = true;
+    self.actionsService.getTop().then(function (result) {
+      if(result.statusCode == 0){
+        self.topActions = result.data;
+      } else{
+        self.notificationService.error("Error", "An error querying top actions list");
+      }
+      setTimeout(function () {
+        self.isTopActionsDataLoading = false;
+      }, 1000);
+    })
+  }
+
+  private getBottomActions(): void {
+    let self = this;
+    self.isBottomActionsDataLoading = true;
+    self.actionsService.getBottom().then(function (result) {
+      if(result.statusCode == 0){
+        self.bottomActions = result.data;
+      } else{
+        self.notificationService.error("Error", "An error querying bottom actions list");
+      }
+      setTimeout(function () {
+        self.isBottomActionsDataLoading = false;
+      }, 1000);
     })
   }
 

@@ -74,12 +74,46 @@
       </div>
     </div>
   </div>
-  <div class="col-md-12">
+  <div class="col-md-12 top-graphs-holder">
     <div class="col-md-3">
-      Best
+      <bounce-loader *ngIf="isTopActionsDataLoading"></bounce-loader>
+      <table class="table table-hover table-striped" *ngIf="topActions.length">
+        <thead>
+        <tr>
+          <th>Top</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let action of topActions">
+          <td class="action-name-column" (click)="selectAction(action)">{{action.name}}</td>
+          <td>
+            <i *ngIf="action.change > 0" class="fa fa-caret-up action-icon-up" aria-hidden="true">+{{action.change}}%</i>
+            <i *ngIf="action.change < 0"class="fa fa-caret-down action-icon-down" aria-hidden="true">-{{action.change}}%</i>
+          </td>
+        </tr>
+        </tbody>
+      </table>
     </div>
     <div class="col-md-3">
-      Worst
+      <bounce-loader *ngIf="isBottomActionsDataLoading"></bounce-loader>
+      <table class="table table-hover table-striped" *ngIf="bottomActions.length">
+        <thead>
+        <tr>
+          <th>Worst</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let action of bottomActions">
+          <td class="action-name-column" (click)="selectAction(action)">{{action.name}}</td>
+          <td>
+            <i *ngIf="action.change > 0" class="fa fa-caret-up action-icon-up" aria-hidden="true">+{{action.change}}%</i>
+            <i *ngIf="action.change < 0"class="fa fa-caret-down action-icon-down" aria-hidden="true">-{{action.change}}%</i>
+          </td>
+        </tr>
+        </tbody>
+      </table>
     </div>
       <div class="col-md-6">
         <div>
