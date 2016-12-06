@@ -125,7 +125,8 @@
   <div class="col-md-12">
     <div class="col-md-6">
       <div class="col-md-12">
-        Суммарное изменение всех
+        <bounce-loader *ngIf="isTopChangingArrayLoading"></bounce-loader>
+        <nvd3 ng-if="topChangingData.values.length" [options]="allChangingOptions" [data]="topChangingData"  [hidden]="!topChangingData"></nvd3>
       </div>
       <div class="col-md-12">
         цена 2-х

@@ -34,6 +34,10 @@ export class ActionsService extends HttpService {
     return this.doGet('/getTop',{});
   }
 
+  getTopChangingArray(){
+    return this.doGet('/getTopChangingArray',{});
+  }
+
   getBottom(){
     return this.doGet('/getBottom',{});
   }

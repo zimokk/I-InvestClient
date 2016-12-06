@@ -24,6 +24,7 @@ export class ActionsHomeComponent {
   public data;
   public bottomActions = [];
   public topActions = [];
+  public topChangingData = [];
 
   constructor(private  notificationService: NotificationsService, private actionsService: ActionsService) {
   }
@@ -66,9 +67,47 @@ export class ActionsHomeComponent {
 
       }
     };
+    this.allChangingOptions = {
+      chart: {
+        type: 'cumulativeLineChart',
+        height: 450,
+        margin : {
+          top: 20,
+          right: 20,
+          bottom: 60,
+          left: 65
+        },
+        x: function(d){ return d[0]; },
+        y: function(d){ return d[1]/100; },
+        average: function(d) { return d.mean/100; },
+
+        color: d3.scale.category10().range(),
+        duration: 300,
+        useInteractiveGuideline: true,
+        clipVoronoi: false,
+
+        xAxis: {
+          axisLabel: 'Date',
+          tickFormat: function(d) {
+            return d/1000000000;//d3.time.format('%m/%d/%y')(new Date(d))
+          },
+          showMaxMin: false,
+          staggerLabels: true
+        },
+
+        yAxis: {
+          axisLabel: 'Y Axis',
+          tickFormat: function(d){
+            return d3.format(',.1%')(d);
+          },
+          axisLabelDistance: 20
+        }
+      }
+    };
     this.getActions();
     this.getTopActions();
     this.getBottomActions();
+    this.getTopChangingArray();
   }
 
   public selectAction(action):void{
@@ -171,6 +210,21 @@ export class ActionsHomeComponent {
       }
       setTimeout(function () {
         self.isBottomActionsDataLoading = false;
+      }, 1000);
+    })
+  }
+
+  private getTopChangingArray(): void {
+    let self = this;
+    self.isTopChangingArrayLoading = true;
+    self.actionsService.getTopChangingArray().then(function (result) {
+      if(result.statusCode == 0){
+        self.topChangingData = result.data;
+      } else{
+        self.notificationService.error("Error", "An error querying top canging actions data");
+      }
+      setTimeout(function () {
+        self.isTopChangingArrayLoading = false;
       }, 1000);
     })
   }
