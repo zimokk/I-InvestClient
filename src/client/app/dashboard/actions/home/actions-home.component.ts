@@ -89,7 +89,7 @@ export class ActionsHomeComponent {
         xAxis: {
           axisLabel: 'Date',
           tickFormat: function(d) {
-            return d/1000000000;//d3.time.format('%m/%d/%y')(new Date(d))
+            return d3.time.format('%m/%d/%y')(new Date(d))
           },
           showMaxMin: false,
           staggerLabels: true
