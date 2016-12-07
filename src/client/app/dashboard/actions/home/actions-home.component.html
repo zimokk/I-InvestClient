@@ -133,7 +133,26 @@
       </div>
     </div>
     <div class="col-md-6">
-      Изменение 2-х
+      <div class="row">
+        <div class="col-sm-1">
+          <div class="action_box blue_box"></div>
+        </div>
+        <div class="col-sm-5">
+          <ng-select [items]="actionNames"
+                     (selected)="selected($event)"
+                     placeholder="Not selected">
+          </ng-select>
+        </div>
+        <div class="col-sm-1">
+          <div class="action_box red_box"></div>
+        </div>
+        <div class="col-sm-5">
+          <ng-select [items]="actionNames"
+                     (selected)="selected($event)"
+                     placeholder="Not selected">
+          </ng-select>
+        </div>
+      </div>
     </div>
   </div>
 </div>

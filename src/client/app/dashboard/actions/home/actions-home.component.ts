@@ -108,6 +108,7 @@ export class ActionsHomeComponent {
     this.getTopActions();
     this.getBottomActions();
     this.getTopChangingArray();
+    this.actionNames = [];
   }
 
   public selectAction(action):void{
@@ -172,11 +173,21 @@ export class ActionsHomeComponent {
     })
   }
 
+  selected(event){
+    console.log(event);
+  }
+
   private getActions(): void {
     let self = this;
     self.actionsService.getAll().then(function (result) {
       if(result.statusCode == 0){
         self.actions = result.data;
+        self.actionNames = self.actions.map(function (action) {
+          return {
+            text:action.name,
+            id: action._id
+          };
+        })
       } else{
         self.notificationService.error("Error", "An error querying actions list");
       }
