@@ -17,7 +17,7 @@ import {Ng2PaginationModule} from "ng2-pagination/index";
 import {SelectModule} from "ng2-select/ng2-select";
 
 @NgModule({
-  imports: [CommonModule, SelectModule, LoaderModule, RouterModule, BrowserModule, SharedModule, ConfirmModule,  Ng2PaginationModule, FormsModule, PaginationModule,],
+  imports: [CommonModule, SelectModule, LoaderModule, RouterModule, BrowserModule, SharedModule, ConfirmModule,  Ng2PaginationModule, FormsModule, PaginationModule],
   declarations: [ProfileComponent],
   exports: [ProfileComponent, RouterModule],
   providers: [UserService, ConfirmOptions, AuthService, WorkplaceService, MessagesService]
