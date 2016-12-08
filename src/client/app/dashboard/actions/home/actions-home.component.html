@@ -89,7 +89,7 @@
           <td class="action-name-column" (click)="selectAction(action)">{{action.name}}</td>
           <td>
             <i *ngIf="action.change > 0" class="fa fa-caret-up action-icon-up" aria-hidden="true">+{{action.change}}%</i>
-            <i *ngIf="action.change < 0"class="fa fa-caret-down action-icon-down" aria-hidden="true">-{{action.change}}%</i>
+            <i *ngIf="action.change < 0" class="fa fa-caret-down action-icon-down" aria-hidden="true">{{action.change}}%</i>
           </td>
         </tr>
         </tbody>
