@@ -153,6 +153,7 @@
           </ng-select>
         </div>
       </div>
+      <nvd3 ng-if="comparingData.length" [options]="compareOptions" [data]="comparingData"  [hidden]="!comparingData"></nvd3>
     </div>
   </div>
 </div>

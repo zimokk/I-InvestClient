@@ -25,6 +25,112 @@ export class ActionsHomeComponent {
   public bottomActions = [];
   public topActions = [];
   public topChangingData = [];
+  public compareOptions = {
+    chart: {
+      type: 'multiBarHorizontalChart',
+      height: 450,
+      x: function(d){return d.label;},
+      y: function(d){return d.value;},
+      showControls: true,
+      showValues: true,
+      duration: 500,
+      xAxis: {
+        showMaxMin: false
+      },
+      yAxis: {
+        axisLabel: 'Values',
+        tickFormat: function(d){
+          return d3.format(',.2f')(d);
+        }
+      }
+    }
+  };
+  public comparingData = [
+    {
+      "key": "Nokia",
+      "color": "red",
+      "values": [
+        {
+          "label" : "2005" ,
+          "value" : 1.8746444827653
+        } ,
+        {
+          "label" : "2006" ,
+          "value" : 8.0961543492239
+        } ,
+        {
+          "label" : "2007" ,
+          "value" : -0.57072943117674
+        } ,
+        {
+          "label" : "2008" ,
+          "value" : 2.4174010336624
+        } ,
+        {
+          "label" : "2009" ,
+          "value" : -0.72009071426284
+        } ,
+        {
+          "label" : "2010" ,
+          "value" : -0.77154485523777
+        } ,
+        {
+          "label" : "2011" ,
+          "value" : 0.90152097798131
+        } ,
+        {
+          "label" : "2012" ,
+          "value" : -0.91445417330854
+        } ,
+        {
+          "label" : "2013" ,
+          "value" : 11.055746319141851
+        }
+      ]
+    },
+    {
+      "key": "Apple",
+      "color": "blue",
+      "values": [
+        {
+          "label" : "2005" ,
+          "value" : 25.307646510375
+        } ,
+        {
+          "label" : "2006" ,
+          "value" : 16.756779544553
+        } ,
+        {
+          "label" : "2007" ,
+          "value" : 18.451534877007
+        } ,
+        {
+          "label" : "2008" ,
+          "value" : -8.6142352811805
+        } ,
+        {
+          "label" : "2009" ,
+          "value" : 7.8082472075876
+        } ,
+        {
+          "label" : "2010" ,
+          "value" : 5.259101026956
+        } ,
+        {
+          "label" : "2011" ,
+          "value" : -0.30947953487127
+        } ,
+        {
+          "label" : "2012" ,
+          "value" : 0
+        } ,
+        {
+          "label" : "2013" ,
+          "value" : 0.55
+        }
+      ]
+    }
+  ];
 
   constructor(private  notificationService: NotificationsService, private actionsService: ActionsService) {
   }
