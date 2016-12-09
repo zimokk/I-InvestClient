@@ -4,7 +4,8 @@
 <div class="row">
   <div class="col-md-12 card card-block">
     <div class="col-lg-6">
-      Avatar
+      Аватар
+      <img src="http://www.fresher.ru/wp-content/images3/avatar-2/big/30.jpg" width="100px" height="100px">
     </div>
     <div class="col-lg-6">
       <h4 class="card-title">{{currentUser.login}}</h4>
@@ -13,27 +14,27 @@
   <div class="col-md-12 card card-block">
     <div class="col-lg-6">
       <div class="col-sm-12">
-        <h2>Login : {{currentUser.login}}</h2>
+        <h2>Логин : {{currentUser.login}}</h2>
       </div>
       <div class="col-sm-12">
-        <h4>First name : {{currentUser.firstName}}</h4>
+        <h4>Имя : {{currentUser.firstName}}</h4>
       </div>
       <div class="col-sm-12">
-        <h4>Last name : {{currentUser.lastName}}</h4>
+        <h4>Фамилия : {{currentUser.lastName}}</h4>
       </div>
       <div class="col-sm-6">
-        Age: {{currentUser.age}}
+        Возраст: {{currentUser.age}}
       </div>
       <div class="col-sm-6">
-        Sex: {{currentUser.sex}}
+        Пол: {{currentUser.sex}}
       </div>
     </div>
     <div class="col-lg-6" *ngIf="companies.length">
-      Companies list:
+      Список компаний пользователя:
       <table class="table table-hover table-striped">
         <thead>
           <tr>
-            <th>Company</th>
+            <th>Компания</th>
             <th></th>
           </tr>
         </thead>

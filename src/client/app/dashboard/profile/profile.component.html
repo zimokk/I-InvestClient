@@ -12,7 +12,7 @@
     <div class="col-lg-1">
       <button class="btn btn-success save-profile-button" (click)="saveChanges()">
         <i class="fa fa-floppy-o" aria-hidden="true"></i>
-        Save
+        Сохранить
       </button>
     </div>
   </div>
@@ -20,29 +20,29 @@
     E-mail <ndv-edit [title]="'email'" [permission]="true" [placeholder]='user.email' (onSave)='saveEditable($event)'></ndv-edit>
   </div>
   <div class="col-lg-6">
-    Age <ndv-edit [title]="'age'" [permission]="true" [placeholder]='user.age' (onSave)='saveEditable($event)'></ndv-edit>
+    Возраст <ndv-edit [title]="'age'" [permission]="true" [placeholder]='user.age' (onSave)='saveEditable($event)'></ndv-edit>
   </div>
   <div class="col-md-12 additional-info-profile">
     <div class="card col-md-6 additional-info-part">
       <div class="card-header">
-        Personal information
+        Персональная информация
       </div>
       <div class="card-block">
         <p>
           <label>
-            First name:
+            Имя:
             <input class="form-control" type="text" [(ngModel)]="user.firstName">
           </label>
         </p>
         <p>
           <label>
-            Last name:
+            Фамилия:
             <input class="form-control" type="text" [(ngModel)]="user.lastName">
           </label>
         </p>
         <p>
           <label>
-            Phone number:
+            Номер телефона:
             <input class="form-control" type="text" [(ngModel)]="user.phone">
           </label>
         </p>
@@ -57,7 +57,7 @@
     <div class="card col-md-6 additional-info-part">
       <div class="card card-default">
         <div class="card-header">
-          <i class="fa fa-briefcase fa-fw"></i> Experience
+          <i class="fa fa-briefcase fa-fw"></i> Опыт
         </div>
         <div class="panel-body">
           <div class="list-group workplaces-list">
@@ -70,10 +70,10 @@
           </div>
           <div class="row card-footer">
             <div class="col-sm-5 new-exp-input">
-              <input [(ngModel)]="company" class="form-control" type="text" placeholder="Company name">
+              <input [(ngModel)]="company" class="form-control" type="text" placeholder="Компания">
             </div>
             <div class="col-sm-5 new-exp-input">
-              <input [(ngModel)]="duration"  class="form-control" type="text" placeholder="Duration">
+              <input [(ngModel)]="duration"  class="form-control" type="text" placeholder="Продолжительность">
             </div>
             <button (click)="addWorkplace()" class="btn btn-primary add-company-button col-sm-2">
               <i class="fa fa-plus-square-o"></i>
@@ -85,7 +85,7 @@
   </div>
   <div class="col-md-6 messages-box" *ngIf="sentMessages.length">
     <h3>
-      Sent messages
+      Отправленные сообщение
     </h3>
     <div class="messages-list">
       <div class="card card-primary card-inverse" *ngFor="let sentItem of sentMessages">
@@ -115,7 +115,7 @@
   </div>
   <div class="col-md-6 messages-box" *ngIf="inbox.length">
     <h3>
-      Inbox
+      Принятые сообщения
     </h3>
     <div class="messages-list">
       <div class="card card-primary card-inverse" *ngFor="let inboxItem of inbox">
@@ -145,20 +145,20 @@
   </div>
   <div class="col-md-12 send-message-form">
     <div class="col-sm-2 message-title-block">
-      <input [(ngModel)]="messageTitle" placeholder="Title" class="form-control" type="text">
+      <input [(ngModel)]="messageTitle" placeholder="Заголовок" class="form-control" type="text">
     </div>
     <div class="col-sm-5">
-      <textarea [(ngModel)]="messageText" class="form-control message-textarea" placeholder="Type your message here..."></textarea>
+      <textarea [(ngModel)]="messageText" class="form-control message-textarea" placeholder="Наберите сообщение..."></textarea>
     </div>
     <div class="col-sm-4 user-selector-block">
       <ng-select [items]="userLogins"
         (selected)="selected($event)"
-        placeholder="No user selected">
+        placeholder="Адресат не выбран">
       </ng-select>
     </div>
     <div class="col-sm-1 send-button-block">
       <button (click)="sendMessage()" class="btn btn-primary">
-        Send
+        Отправить
       </button>
     </div>
   </div>

@@ -34,17 +34,6 @@ export class HomeComponent {
 	];
 	/* END */
 	/* Alert component */
-	public alerts:Array<Object> = [
-	   {
-	     type: 'danger',
-	     msg: 'Oh snap! Change a few things up and try submitting again.'
-	   },
-	   {
-	     type: 'success',
-	     msg: 'Well done! You successfully read this important alert message.',
-	     closable: true
-	   }
-	 ];
 
 	 public closeAlert(i:number):void {
 	   this.alerts.splice(i, 1);
@@ -62,8 +51,8 @@ export class HomeComponent {
 		let i = this.slides.length;
 		this.slides.push({
 			image: this.imgUrl[i],
-			text: `${['Dummy ', 'Dummy ', 'Dummy ', 'Dummy '][this.slides.length % 4]}
-      			${['text 0', 'text 1', 'text 2', 'text 3'][this.slides.length % 4]}`
+			text: `${['Акции ', 'Компании ', 'Общение ', 'Визуализация '][this.slides.length % 4]}
+      			${['Возможность отслеживать изменения цен', 'Возможность управлять инвестициями компании', 'Возможность взаимодействия с пользователями системы', 'Возможность следить, сравнивать, анализировать'][this.slides.length % 4]}`
 		});
 	}
 	/* END */

@@ -2,10 +2,10 @@
 <div class="row"> <!--*ngIf="!isLoading"-->
   <div class="col-xl-12 col-lg-12">
     <div class="col-sm-12">
-      <span class="pull-left">Basic example</span>
+      <span class="pull-left">Список зарегестрированных компаний</span>
       <span class="pull-right">
         <button class="btn btn-success" [routerLink]="['new']">
-          Create
+          Создать
         </button>
       </span>
     </div>
@@ -18,7 +18,7 @@
           <div class="card-block">
           <span>
             <h2>
-              State: {{company.state}}
+              Штат: {{company.state}}
             </h2>
           </span>
             <div class="card-footer">
@@ -30,7 +30,7 @@
           </div>
           <div class="card-footer card-default">
             <a [routerLink]="['company/:id', {id: company._id}]">
-              <span class="pull-xs-left">View Details</span>
+              <span class="pull-xs-left">Подробнее</span>
               <span class="pull-xs-right"><i class="fa fa-arrow-circle-right"></i></span>
               <span class="pull-xs-right year-span">{{company.foundation}}</span>
               <div class="clearfix"></div>

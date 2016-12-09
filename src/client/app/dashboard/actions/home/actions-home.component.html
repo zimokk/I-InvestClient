@@ -1,14 +1,14 @@
 <loader *ngIf="isLoading"></loader>
 <div class="col-md-12">
   <div class="col-md-6">
-    <h4>Actions</h4>
+    <h4>Акции на рынке</h4>
     <div class="card card-block">
       <div class="table-responsive">
         <bounce-loader *ngIf="isActionsDataRefreshing"></bounce-loader>
         <table class="table table-hover table-striped">
           <thead>
             <tr>
-              <th>Name</th>
+              <th>Название</th>
               <th></th>
             </tr>
           </thead>
@@ -17,7 +17,7 @@
               <td class="action-name-column" (click)="selectAction(action)">{{action.name}}</td>
               <td>
                 <button class="btn btn-sm btn-info" [routerLink]="['action/:id', {id: action._id}]" >
-                  More <i class="fa fa-info" aria-hidden="true"></i>
+                  Подробнее <i class="fa fa-info" aria-hidden="true"></i>
                 </button>
               </td>
             </tr>
@@ -33,11 +33,11 @@
   <div class="col-md-6">
     <div class="col-sm-12">
       <div class="col-sm-8 search-name-block">
-        <input [(ngModel)]="nameContains" type="text"  class="form-control" placeholder="Action name">
+        <input [(ngModel)]="nameContains" type="text"  class="form-control" placeholder="Название акции">
       </div>
       <div class="col-sm-4">
         <button class="btn btn-primary" (click)="findActionByName(nameContains)">
-          Find
+          Поиск
           <i class="fa fa-search"></i>
         </button>
       </div>
@@ -62,14 +62,14 @@
     </div>
     <div class="col-sm-12" *ngIf="currentlyChosenAction">
       <div class="col-sm-3">
-        Current:
+        Текущая:
       </div>
       <div class="col-sm-5">
         {{currentlyChosenAction.name}}
       </div>
       <div class="col-sm-4">
         <button class="btn btn-danger" (click)="setCurrentlyChosen(null)">
-          Clear <i class="fa fa-remove"></i>
+          Очистить <i class="fa fa-remove"></i>
         </button>
       </div>
     </div>
@@ -80,7 +80,7 @@
       <table class="table table-hover table-striped" *ngIf="topActions.length">
         <thead>
         <tr>
-          <th>Top</th>
+          <th>Лучшие</th>
           <th></th>
         </tr>
         </thead>
@@ -100,7 +100,7 @@
       <table class="table table-hover table-striped" *ngIf="bottomActions.length">
         <thead>
         <tr>
-          <th>Worst</th>
+          <th>Худшие</th>
           <th></th>
         </tr>
         </thead>
@@ -127,9 +127,6 @@
       <div class="col-md-12">
         <bounce-loader *ngIf="isTopChangingArrayLoading"></bounce-loader>
         <nvd3 ng-if="topChangingData.values.length" [options]="allChangingOptions" [data]="topChangingData"  [hidden]="!topChangingData"></nvd3>
-      </div>
-      <div class="col-md-12">
-        цена 2-х
       </div>
     </div>
     <div class="col-md-6">

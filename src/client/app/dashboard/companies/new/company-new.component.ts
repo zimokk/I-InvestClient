@@ -18,6 +18,52 @@ export class CompanyNewComponent {
   };
   public isLoading = false;
   private currentUser;
+  public actions = [
+    {
+      "_id": "58297da557d2c422305fcabb",
+      "name": "Apple"
+    },
+    {
+      "_id": "582c2081dba9091d80a1aa32",
+      "name": "Nokia"
+    },
+    {
+      "_id": "582c2091dba9091d80a1b01b",
+      "name": "JetBrains"
+    },
+    {
+      "_id": "582c209fdba9091d80a1b604",
+      "name": "Opel"
+    },
+    {
+      "_id": "582c20acdba9091d80a1bbed",
+      "name": "WS"
+    },
+    {
+      "_id": "582c20d9dba9091d80a1c1d6",
+      "name": "Logitech"
+    },
+    {
+      "_id": "582c20e7dba9091d80a1c7bf",
+      "name": "High definit"
+    },
+    {
+      "_id": "582c20f1dba9091d80a1cda8",
+      "name": "Na'vi"
+    },
+    {
+      "_id": "582c2273dba9091d80a1d391",
+      "name": "Na'vi"
+    },
+    {
+      "_id": "582c2274dba9091d80a1d7de",
+      "name": "Na'vi"
+    },
+    {
+      "_id": "582c2275dba9091d80a1def3",
+      "name": "Na'vi"
+    }
+  ];
 
   constructor(
     private notificationService: NotificationsService,
